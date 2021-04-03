@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane fx:controller="com.almasb.libraryloan.TableController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="book_table" layoutX="29.0" layoutY="33.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="col_title" prefWidth="98.0" text="title" />
+          <TableColumn fx:id="col_genre" prefWidth="110.0" text="genre" />
+            <TableColumn fx:id="col_author" prefWidth="117.0" text="author" />
+            <TableColumn fx:id="col_year" prefWidth="75.0" text="year" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
