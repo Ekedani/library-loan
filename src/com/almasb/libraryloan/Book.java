@@ -5,11 +5,15 @@ import java.util.List;
 
 public class Book {
 
-    private long uniqueID;
-    private String name;
+    private long bookID;
+    private String title;
+    private String genre;
     private List<String> authors;
-    private int publishedYear;
-    private boolean available;
+    private int publishYear;
+    private String annotation;
+    private int copiesGiven;
+    private int copiesPresent;
+    //private boolean available;
 
     public String getAuthors() {
         String result = "";
@@ -22,44 +26,51 @@ public class Book {
         this.authors = Arrays.asList(authors.split("_"));
     }
 
-    public final long getUniqueID() {
-        return uniqueID;
+    public final long getBookID() {
+        return bookID;
     }
-    public final void setUniqueID(long uniqueID) {
-        this.uniqueID = uniqueID;
+
+    public final void setBookID(long bookID) {
+        this.bookID = bookID;
     }
-    public final String getName() {
-        return name;
+
+    public final String getTitle() {
+        return title;
     }
-    public final void setName(String name) {
-        this.name = name;
+
+    public final void setTitle(String title) {
+        this.title = title;
     }
-    public final int getPublishedYear() {
-        return publishedYear;
+
+    public final int getPublishYear() {
+        return publishYear;
     }
-    public final void setPublishedYear(int publishedYear) {
-        this.publishedYear = publishedYear;
+
+    public final void setPublishYear(int publishYear) {
+        this.publishYear = publishYear;
     }
-    public final boolean isAvailable() {
+
+   /* public final boolean isAvailable() {
         return available;
     }
+
     public final void setAvailable(boolean available) {
         this.available = available;
-    }
+    }*/
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("Book [uniqueID=");
-        builder.append(uniqueID);
+        builder.append(bookID);
         builder.append(", name=");
-        builder.append(name);
+        builder.append(title);
         builder.append(", authors=");
         builder.append(authors);
         builder.append(", publishedYear=");
-        builder.append(publishedYear);
-        builder.append(", available=");
-        builder.append(available);
+        builder.append(publishYear);
+        //builder.append(", available=");
+        //builder.append(available);
         builder.append("]");
         return builder.toString();
     }
@@ -69,8 +80,8 @@ public class Book {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((authors == null) ? 0 : authors.hashCode());
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + publishedYear;
+        result = prime * result + ((title == null) ? 0 : title.hashCode());
+        result = prime * result + publishYear;
         return result;
     }
 
@@ -86,17 +97,47 @@ public class Book {
         if (authors == null) {
             if (other.authors != null)
                 return false;
-        }
-        else if (!authors.equals(other.authors))
+        } else if (!authors.equals(other.authors))
             return false;
-        if (name == null) {
-            if (other.name != null)
+        if (title == null) {
+            if (other.title != null)
                 return false;
-        }
-        else if (!name.equals(other.name))
+        } else if (!title.equals(other.title))
             return false;
-        if (publishedYear != other.publishedYear)
+        if (publishYear != other.publishYear)
             return false;
         return true;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getAnnotation() {
+        return annotation;
+    }
+
+    public void setAnnotation(String annotation) {
+        this.annotation = annotation;
+    }
+
+    public int getCopiesGiven() {
+        return copiesGiven;
+    }
+
+    public void setCopiesGiven(int copiesGiven) {
+        this.copiesGiven = copiesGiven;
+    }
+
+    public int getCopiesPresent() {
+        return copiesPresent;
+    }
+
+    public void setCopiesPresent(int copiesPresent) {
+        this.copiesPresent = copiesPresent;
     }
 }

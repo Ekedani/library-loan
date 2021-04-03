@@ -34,10 +34,10 @@ public class Controller {
     }
 
     public void onLoan() {
-        model.loanBook(listView.getSelectionModel().getSelectedItem().getUniqueID());
+        model.loanBook(listView.getSelectionModel().getSelectedItem().getBookID());
     }
 
     public void onReturn() {
-        model.returnBook(listView.getSelectionModel().getSelectedItem().getUniqueID());
+        model.returnBook(listView.getSelectionModel().getSelectedItem().getBookID());
     }
 }

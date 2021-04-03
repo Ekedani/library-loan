@@ -49,7 +49,7 @@ public class DerbyBookDAO implements BookDAO {
 
         try {
             long id = dbAccess.insert(connection, "INSERT INTO BOOK (title, author, PUBLISHYEAR, COPIESPRESENT) VALUES (?, ?, ?, ?)",
-                    new ScalarHandler<BigDecimal>(), book.getName(), book.getAuthors(), book.getPublishedYear(), 13).longValue();
+                    new ScalarHandler<BigDecimal>(), book.getTitle(), book.getAuthors(), book.getPublishYear(), 13).longValue();
             return id;
         }
         catch (Exception e) {
@@ -64,7 +64,7 @@ public class DerbyBookDAO implements BookDAO {
 
         try {
             dbAccess.update(connection, "UPDATE Book SET title=?, author=?, PUBLISHYEAR=?, COPIESPRESENT=? WHERE BOOKID=?",
-                    book.getName(), book.getAuthors(), book.getPublishedYear(), 555, book.getUniqueID());
+                    book.getTitle(), book.getAuthors(), book.getPublishYear(), 555, book.getBookID());
             return true;
         }
         catch (Exception e) {
@@ -77,7 +77,7 @@ public class DerbyBookDAO implements BookDAO {
     @Override
     public boolean deleteBook(Book book) {
         try {
-            dbAccess.update(connection, "DELETE FROM book WHERE BOOKID=?", book.getUniqueID());
+            dbAccess.update(connection, "DELETE FROM book WHERE BOOKID=?", book.getBookID());
             return true;
         }
         catch (Exception e) {

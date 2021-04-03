@@ -19,10 +19,10 @@ public class Library {
 
     public void addNewBook(String name, String authors, int year) {
         Book book = new Book();
-        book.setAvailable(true);
-        book.setName(name);
+        //book.setAvailable(true);
+        book.setTitle(name);
         book.setAuthors(authors);
-        book.setPublishedYear(year);
+        book.setPublishYear(year);
 
         bookDAO.insertBook(book);
     }
@@ -30,7 +30,7 @@ public class Library {
     public void loanBook(long uniqueID) {
         List<Book> books = bookDAO.findBookByProperty(BookSearchType.ID, uniqueID);
         if (books.size() > 0) {
-            books.get(0).setAvailable(false);
+            //books.get(0).setAvailable(false);
             bookDAO.updateBook(books.get(0));
         }
     }
@@ -38,7 +38,7 @@ public class Library {
     public void returnBook(long uniqueID) {
         List<Book> books = bookDAO.findBookByProperty(BookSearchType.ID, uniqueID);
         if (books.size() > 0) {
-            books.get(0).setAvailable(true);
+            //books.get(0).setAvailable(true);
             bookDAO.updateBook(books.get(0));
         }
     }
