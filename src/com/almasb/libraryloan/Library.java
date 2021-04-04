@@ -1,5 +1,7 @@
 package com.almasb.libraryloan;
 
+import com.almasb.libraryloan.booklist.Book;
+
 import java.util.List;
 
 public class Library {
@@ -17,11 +19,11 @@ public class Library {
         }
     }
 
-    public void addNewBook(String name, String authors, int year) {
+    public void addNewBook(String name, String author, int year) {
         Book book = new Book();
         //book.setAvailable(true);
         book.setTitle(name);
-        book.setAuthors(authors);
+        book.setAuthor(author);
         book.setPublishYear(year);
 
         bookDAO.insertBook(book);

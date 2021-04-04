@@ -1,5 +1,6 @@
 package com.almasb.libraryloan;
 
+import com.almasb.libraryloan.booklist.Book;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;

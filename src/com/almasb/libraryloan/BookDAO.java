@@ -1,5 +1,7 @@
 package com.almasb.libraryloan;
 
+import com.almasb.libraryloan.booklist.Book;
+
 import java.util.List;
 
 public interface BookDAO extends DAO {

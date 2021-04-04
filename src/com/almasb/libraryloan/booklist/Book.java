@@ -1,4 +1,4 @@
-package com.almasb.libraryloan;
+package com.almasb.libraryloan.booklist;
 
 import java.util.Arrays;
 import java.util.List;
@@ -8,22 +8,19 @@ public class Book {
     private long bookID;
     private String title;
     private String genre;
-    private List<String> authors;
+    private String author;
     private int publishYear;
     private String annotation;
     private int copiesGiven;
     private int copiesPresent;
     //private boolean available;
 
-    public String getAuthors() {
-        String result = "";
-        for (String author : authors)
-            result += author + "_";
-        return result.substring(0, result.length() - 1);
+    public String getAuthor() {
+        return author;
     }
 
-    public void setAuthors(String authors) {
-        this.authors = Arrays.asList(authors.split("_"));
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public final long getBookID() {
@@ -66,7 +63,7 @@ public class Book {
         builder.append(", name=");
         builder.append(title);
         builder.append(", authors=");
-        builder.append(authors);
+        builder.append(author);
         builder.append(", publishedYear=");
         builder.append(publishYear);
         //builder.append(", available=");
@@ -79,7 +76,7 @@ public class Book {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((authors == null) ? 0 : authors.hashCode());
+        result = prime * result + ((author == null) ? 0 : author.hashCode());
         result = prime * result + ((title == null) ? 0 : title.hashCode());
         result = prime * result + publishYear;
         return result;
@@ -94,10 +91,10 @@ public class Book {
         if (getClass() != obj.getClass())
             return false;
         Book other = (Book) obj;
-        if (authors == null) {
-            if (other.authors != null)
+        if (author == null) {
+            if (other.author != null)
                 return false;
-        } else if (!authors.equals(other.authors))
+        } else if (!author.equals(other.author))
             return false;
         if (title == null) {
             if (other.title != null)

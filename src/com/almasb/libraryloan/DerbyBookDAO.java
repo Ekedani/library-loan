@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.almasb.libraryloan.booklist.Book;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
@@ -49,7 +50,7 @@ public class DerbyBookDAO implements BookDAO {
 
         try {
             long id = dbAccess.insert(connection, "INSERT INTO BOOK (title, author, PUBLISHYEAR, COPIESPRESENT) VALUES (?, ?, ?, ?)",
-                    new ScalarHandler<BigDecimal>(), book.getTitle(), book.getAuthors(), book.getPublishYear(), 13).longValue();
+                    new ScalarHandler<BigDecimal>(), book.getTitle(), book.getAuthor(), book.getPublishYear(), 13).longValue();
             return id;
         }
         catch (Exception e) {
@@ -64,7 +65,7 @@ public class DerbyBookDAO implements BookDAO {
 
         try {
             dbAccess.update(connection, "UPDATE Book SET title=?, author=?, PUBLISHYEAR=?, COPIESPRESENT=? WHERE BOOKID=?",
-                    book.getTitle(), book.getAuthors(), book.getPublishYear(), 555, book.getBookID());
+                    book.getTitle(), book.getAuthor(), book.getPublishYear(), 555, book.getBookID());
             return true;
         }
         catch (Exception e) {
