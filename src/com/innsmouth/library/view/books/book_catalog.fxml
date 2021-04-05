@@ -17,10 +17,11 @@
       <Label layoutX="88.0" layoutY="110.0" text="Author" />
       <Label layoutX="94.0" layoutY="151.0" text="Year" />
       <Label layoutX="90.0" layoutY="191.0" text="Genre" />
-      <TextField fx:id="searchBook_title" layoutX="149.0" layoutY="60.0" />
-      <TextField fx:id="searchBook_author" layoutX="149.0" layoutY="106.0" />
-      <TextField fx:id="searchBook_year"  layoutX="149.0" layoutY="147.0" />
-      <TextField fx:id="searchBook_genre" layoutX="149.0" layoutY="187.0" />
-      <Button    fx:id="searchBook_searchBtn" onAction="#onSearch"  layoutX="197.0" layoutY="248.0" mnemonicParsing="false" text="Search" />
+      <TextField fx:id="searchBook_title" layoutX="149.0" layoutY="60.0" onAction="#onSearch" />
+      <TextField fx:id="searchBook_author" layoutX="149.0" layoutY="106.0" onAction="#onSearch" />
+      <TextField fx:id="searchBook_year" layoutX="149.0" layoutY="147.0" onAction="#onSearch" />
+      <TextField fx:id="searchBook_genre" layoutX="149.0" layoutY="187.0" onAction="#onSearch" />
+      <Button fx:id="searchBook_searchBtn" layoutX="149.0" layoutY="248.0" mnemonicParsing="false" onAction="#onSearch" text="Search" />
+      <Button fx:id="searchBook_showAllBtn" layoutX="236.0" layoutY="248.0" mnemonicParsing="false" onAction="#onShowAll" text="Show All" />
    </children>
 </Pane>

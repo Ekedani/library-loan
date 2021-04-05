@@ -5,6 +5,7 @@ import com.innsmouth.library.domain.facade.BookRepositoryFacade;
 import com.innsmouth.library.data.dataobject.Book;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -74,6 +75,10 @@ public class BookCatalogController implements Initializable {
         queryBooks();
     }
 
+    public void onShowAll(/*ActionEvent actionEvent*/) {
+        populateTableViewWithAllBooks();
+    }
+
     private void queryBooks() {
         BookQuery query = createQuery();
         List<Book> resultList = facade.search(query);
@@ -107,8 +112,11 @@ public class BookCatalogController implements Initializable {
     }
 
     private int getYearText() {
-
-        return 0; //todo implement it
+        String yearText = searchBook_year.getText();
+        if (yearText.isEmpty()){
+            return 0;
+        }
+        return Integer.parseInt(yearText);
     }
 
     private String getGenreText() {
