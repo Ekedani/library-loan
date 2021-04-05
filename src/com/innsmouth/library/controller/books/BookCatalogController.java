@@ -7,35 +7,25 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.text.DecimalFormat;
+import java.text.ParsePosition;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class BookCatalogController implements Initializable {
-
     @FXML
     private TextField searchBook_genre;
-
     @FXML
     private TextField searchBook_title;
-
     @FXML
     private TextField searchBook_author;
-
     @FXML
     private TextField searchBook_year;
-
-    @FXML
-    private Button searchBook_searchBtn;
-
-    private final BookRepositoryFacade facade;
 
     @FXML
     private TableView<Book> book_table;
@@ -48,22 +38,35 @@ public class BookCatalogController implements Initializable {
     @FXML
     private TableColumn<Book, Integer> col_year;
 
-    ObservableList<Book> bookObservableList = FXCollections.observableArrayList();
+    private final BookRepositoryFacade facade;
+
+    private final ObservableList<Book> bookObservableList = FXCollections.observableArrayList();
 
     public BookCatalogController(BookRepositoryFacade facade, Stage stage) {
         this.facade = facade;
         stage.setOnCloseRequest(e -> facade.close());
     }
 
-    public BookCatalogController(BookRepositoryFacade facade){
-        this.facade = facade;
-
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        configTableView();
+        configUI();
         populateTableViewWithAllBooks();
+    }
+
+    private void configUI() {
+        configIntTextField();
+        configTableView();
+    }
+
+    private void configIntTextField() {
+        searchBook_year.setTextFormatter(new IntTextFormatter());
+    }
+
+    private void configTableView() {
+        col_title.setCellValueFactory(new PropertyValueFactory<>("title"));
+        col_genre.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        col_author.setCellValueFactory(new PropertyValueFactory<>("author"));
+        col_year.setCellValueFactory(new PropertyValueFactory<>("publishYear"));
     }
 
     public void onSearch(/*ActionEvent actionEvent*/) {
@@ -89,20 +92,6 @@ public class BookCatalogController implements Initializable {
         return result;
     }
 
-    private void configTableView() {
-        col_title.setCellValueFactory(new PropertyValueFactory<>("title"));
-        col_genre.setCellValueFactory(new PropertyValueFactory<>("genre"));
-        col_author.setCellValueFactory(new PropertyValueFactory<>("author"));
-        col_year.setCellValueFactory(new PropertyValueFactory<>("publishYear"));
-    }
-
-    private void logSearchStatements() {
-        System.out.println("title: " + getTitleText());
-        System.out.println("author: " + getAuthorText());
-        System.out.println("year: " + getYearText());
-        System.out.println("genre: " + getGenreText());
-    }
-
     private void populateTableViewWithAllBooks() {
         List<Book> allBooks = facade.findAll();
         bookObservableList.setAll(allBooks);
@@ -118,6 +107,7 @@ public class BookCatalogController implements Initializable {
     }
 
     private int getYearText() {
+
         return 0; //todo implement it
     }
 
@@ -125,4 +115,10 @@ public class BookCatalogController implements Initializable {
         return searchBook_genre.getText();
     }
 
+    private void logSearchStatements() {
+        System.out.println("title: " + getTitleText());
+        System.out.println("author: " + getAuthorText());
+        System.out.println("year: " + getYearText());
+        System.out.println("genre: " + getGenreText());
+    }
 }
