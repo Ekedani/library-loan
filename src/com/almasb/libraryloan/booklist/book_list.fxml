@@ -2,9 +2,10 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane fx:controller="com.almasb.libraryloan.booklist.TableController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+
+<Pane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.almasb.libraryloan.booklist.TableController">
    <children>
-      <TableView fx:id="book_table" layoutX="29.0" layoutY="33.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="book_table" layoutY="300.0" prefHeight="300.0" prefWidth="1000.0">
         <columns>
           <TableColumn fx:id="col_title" prefWidth="98.0" text="title" />
           <TableColumn fx:id="col_genre" prefWidth="110.0" text="genre" />
@@ -12,5 +13,14 @@
             <TableColumn fx:id="col_year" prefWidth="75.0" text="year" />
         </columns>
       </TableView>
+      <Label layoutX="95.0" layoutY="64.0" text="Title" />
+      <Label layoutX="88.0" layoutY="110.0" text="Author" />
+      <Label layoutX="94.0" layoutY="151.0" text="Year" />
+      <Label layoutX="90.0" layoutY="191.0" text="Genre" />
+      <TextField fx:id="searchBook_title" layoutX="149.0" layoutY="60.0" />
+      <TextField fx:id="searchBook_author" layoutX="149.0" layoutY="106.0" />
+      <TextField fx:id="searchBook_year"  layoutX="149.0" layoutY="147.0" />
+      <TextField fx:id="searchBook_genre" layoutX="149.0" layoutY="187.0" />
+      <Button    fx:id="searchBook_searchBtn" onAction="#onSearch"  layoutX="197.0" layoutY="248.0" mnemonicParsing="false" text="Search" />
    </children>
-</AnchorPane>
+</Pane>

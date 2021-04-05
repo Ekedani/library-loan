@@ -4,17 +4,16 @@ import com.almasb.libraryloan.booklist.Book;
 
 import java.util.List;
 
-public class Library {
+public class RepositoryFacade {
 
-    private BookDAO bookDAO;
+    private final BookRepository repository;
 
-    public Library(BookDAO bookDAO) {
-        this.bookDAO = bookDAO;
+    public RepositoryFacade(BookRepository repository) {
+        this.repository = repository;
         try {
-            bookDAO.connect();
+            repository.connect();
         }
         catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -26,35 +25,38 @@ public class Library {
         book.setAuthor(author);
         book.setPublishYear(year);
 
-        bookDAO.insertBook(book);
+        repository.insertBook(book);
     }
 
+    public List<Book> findAll(){
+        return repository.findAll();
+    }
+    
     public void loanBook(long uniqueID) {
-        List<Book> books = bookDAO.findBookByProperty(BookSearchType.ID, uniqueID);
+        /*List<Book> books = repository.findBookByProperty(BookSearchType.ID);
         if (books.size() > 0) {
             //books.get(0).setAvailable(false);
-            bookDAO.updateBook(books.get(0));
-        }
+            repository.updateBook(books.get(0));
+        }*/
     }
 
     public void returnBook(long uniqueID) {
-        List<Book> books = bookDAO.findBookByProperty(BookSearchType.ID, uniqueID);
+        /*List<Book> books = repository.findBookByProperty(BookSearchType.ID);
         if (books.size() > 0) {
             //books.get(0).setAvailable(true);
-            bookDAO.updateBook(books.get(0));
-        }
+            repository.updateBook(books.get(0));
+        }*/
     }
 
-    public List<Book> search(BookSearchType searchType, String value) {
-        return bookDAO.findBookByProperty(searchType, value);
+    public List<Book> search(BookQuery query) {
+        return repository.findBookByProperty(query);
     }
 
     public void close() {
         try {
-            bookDAO.close();
+            repository.close();
         }
         catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

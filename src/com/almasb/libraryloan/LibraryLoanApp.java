@@ -7,12 +7,12 @@ import javafx.stage.Stage;
 
 public class LibraryLoanApp extends Application {
 
-    private BookDAO buildDAO() {
-        return new DerbyBookDAO();
+    private BookRepository buildDAO() {
+        return new DerbyBookRepository();
     }
 
-    private Library buildModel() {
-        return new Library(buildDAO());
+    private RepositoryFacade buildModel() {
+        return new RepositoryFacade(buildDAO());
     }
 
     private Controller buildController(Stage stage) {

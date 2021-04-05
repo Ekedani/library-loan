@@ -1,26 +1,43 @@
 package com.almasb.libraryloan.booklist;
 
-import com.almasb.libraryloan.BookSearchType;
-import com.almasb.libraryloan.DerbyBookDAO;
-import com.almasb.libraryloan.Library;
+import com.almasb.libraryloan.BookQuery;
+import com.almasb.libraryloan.RepositoryFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.net.URL;
-import java.sql.DatabaseMetaData;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class TableController implements Initializable {
 
     @FXML
-    private TableView<Book>   book_table;
+    private TextField searchBook_genre;
+
+    @FXML
+    private TextField searchBook_title;
+
+    @FXML
+    private TextField searchBook_author;
+
+    @FXML
+    private TextField searchBook_year;
+
+    @FXML
+    private Button searchBook_searchBtn;
+
+    private final RepositoryFacade facade;
+
+    @FXML
+    private TableView<Book> book_table;
     @FXML
     private TableColumn<Book, String> col_title;
     @FXML
@@ -30,22 +47,81 @@ public class TableController implements Initializable {
     @FXML
     private TableColumn<Book, Integer> col_year;
 
-    ObservableList<Book> list = FXCollections.observableArrayList();
+    ObservableList<Book> bookObservableList = FXCollections.observableArrayList();
+
+    public TableController(RepositoryFacade facade, Stage stage) {
+        this.facade = facade;
+        stage.setOnCloseRequest(e -> facade.close());
+    }
+
+    public TableController(RepositoryFacade facade){
+        this.facade = facade;
+
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        configTableView();
+        populateTableViewWithAllBooks();
+    }
 
-        String param = "Paul";
-        Library model = new Library(new DerbyBookDAO());
-        List<Book> bookList = (model.search(BookSearchType.AUTHOR, param));
+    public void onSearch(/*ActionEvent actionEvent*/) {
+        logSearchStatements();
+        queryBooks();
+    }
 
-        list.setAll(bookList);
+    private void queryBooks() {
+        BookQuery query = createQuery();
+        List<Book> resultList = facade.search(query);
 
+        bookObservableList.setAll(resultList);
+        resultList.forEach(System.out::println);
+    }
+
+    private BookQuery createQuery() {
+        BookQuery result = new BookQuery();
+        result.setAuthor(getAuthorText());
+        result.setTitle(getTitleText());
+        result.setPublishYear(getYearText());
+        result.setGenre(getGenreText());
+
+        return result;
+    }
+
+    private void configTableView() {
         col_title.setCellValueFactory(new PropertyValueFactory<>("title"));
         col_genre.setCellValueFactory(new PropertyValueFactory<>("genre"));
         col_author.setCellValueFactory(new PropertyValueFactory<>("author"));
         col_year.setCellValueFactory(new PropertyValueFactory<>("publishYear"));
-
-        book_table.setItems(list);
     }
+
+    private void logSearchStatements() {
+        System.out.println("title: " + getTitleText());
+        System.out.println("author: " + getAuthorText());
+        System.out.println("year: " + getYearText());
+        System.out.println("genre: " + getGenreText());
+    }
+
+    private void populateTableViewWithAllBooks() {
+        List<Book> allBooks = facade.findAll();
+        bookObservableList.setAll(allBooks);
+        book_table.setItems(bookObservableList);
+    }
+
+    private String getTitleText() {
+        return searchBook_title.getText();
+    }
+
+    private String getAuthorText() {
+        return searchBook_author.getText();
+    }
+
+    private int getYearText() {
+        return 0; //todo implement it
+    }
+
+    private String getGenreText() {
+        return searchBook_genre.getText();
+    }
+
 }

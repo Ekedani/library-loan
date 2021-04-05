@@ -16,9 +16,9 @@ public class Controller {
     @FXML
     private ListView<Book> listView;
 
-    private Library model;
+    private RepositoryFacade model;
 
-    public Controller(Library model, Stage stage) {
+    public Controller(RepositoryFacade model, Stage stage) {
         this.model = model;
         stage.setOnCloseRequest(e -> model.close());
     }
@@ -30,8 +30,7 @@ public class Controller {
 
     public void onSearch(ActionEvent event) {
         String param = ((TextField)event.getSource()).getText();
-
-        listView.getItems().setAll(model.search(choiceBox.getValue(), param));
+        //listView.getItems().setAll(model.search());
     }
 
     public void onLoan() {
