@@ -1,5 +1,8 @@
 package com.almasb.libraryloan;
 
+import com.innsmouth.library.domain.facade.BookRepositoryFacade;
+import com.innsmouth.library.domain.repository.api.BookRepository;
+import com.innsmouth.library.domain.repository.derby.DerbyBookRepository;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,8 +14,8 @@ public class LibraryLoanApp extends Application {
         return new DerbyBookRepository();
     }
 
-    private RepositoryFacade buildModel() {
-        return new RepositoryFacade(buildDAO());
+    private BookRepositoryFacade buildModel() {
+        return new BookRepositoryFacade(buildDAO());
     }
 
     private Controller buildController(Stage stage) {

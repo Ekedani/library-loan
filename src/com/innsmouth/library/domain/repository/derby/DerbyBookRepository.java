@@ -1,4 +1,4 @@
-package com.almasb.libraryloan;
+package com.innsmouth.library.domain.repository.derby;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
-import com.almasb.libraryloan.booklist.Book;
+import com.innsmouth.library.data.dataobject.Book;
+import com.innsmouth.library.data.query.BookQuery;
+import com.innsmouth.library.domain.repository.api.BookRepository;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;

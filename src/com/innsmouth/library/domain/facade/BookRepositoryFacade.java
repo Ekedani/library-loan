@@ -1,14 +1,16 @@
-package com.almasb.libraryloan;
+package com.innsmouth.library.domain.facade;
 
-import com.almasb.libraryloan.booklist.Book;
+import com.innsmouth.library.data.dataobject.Book;
+import com.innsmouth.library.data.query.BookQuery;
+import com.innsmouth.library.domain.repository.api.BookRepository;
 
 import java.util.List;
 
-public class RepositoryFacade {
+public class BookRepositoryFacade {
 
     private final BookRepository repository;
 
-    public RepositoryFacade(BookRepository repository) {
+    public BookRepositoryFacade(BookRepository repository) {
         this.repository = repository;
         try {
             repository.connect();

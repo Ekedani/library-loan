@@ -1,4 +1,4 @@
-package com.almasb.libraryloan;
+package com.innsmouth.library.domain.repository.base;
 
 public interface Repository {
     void setup() throws Exception;

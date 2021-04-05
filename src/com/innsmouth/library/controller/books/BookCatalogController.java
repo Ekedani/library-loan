@@ -1,7 +1,8 @@
-package com.almasb.libraryloan.booklist;
+package com.innsmouth.library.controller.books;
 
-import com.almasb.libraryloan.BookQuery;
-import com.almasb.libraryloan.RepositoryFacade;
+import com.innsmouth.library.data.query.BookQuery;
+import com.innsmouth.library.domain.facade.BookRepositoryFacade;
+import com.innsmouth.library.data.dataobject.Book;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,7 +18,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class TableController implements Initializable {
+public class BookCatalogController implements Initializable {
 
     @FXML
     private TextField searchBook_genre;
@@ -34,7 +35,7 @@ public class TableController implements Initializable {
     @FXML
     private Button searchBook_searchBtn;
 
-    private final RepositoryFacade facade;
+    private final BookRepositoryFacade facade;
 
     @FXML
     private TableView<Book> book_table;
@@ -49,12 +50,12 @@ public class TableController implements Initializable {
 
     ObservableList<Book> bookObservableList = FXCollections.observableArrayList();
 
-    public TableController(RepositoryFacade facade, Stage stage) {
+    public BookCatalogController(BookRepositoryFacade facade, Stage stage) {
         this.facade = facade;
         stage.setOnCloseRequest(e -> facade.close());
     }
 
-    public TableController(RepositoryFacade facade){
+    public BookCatalogController(BookRepositoryFacade facade){
         this.facade = facade;
 
     }

@@ -1,31 +1,29 @@
 package com.almasb.libraryloan;
 
-import com.almasb.libraryloan.booklist.Book;
+import com.innsmouth.library.data.dataobject.Book;
+import com.innsmouth.library.domain.facade.BookRepositoryFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class Controller {
 
-    @FXML
-    private ChoiceBox<BookSearchType> choiceBox;
 
     @FXML
     private ListView<Book> listView;
 
-    private RepositoryFacade model;
+    private BookRepositoryFacade model;
 
-    public Controller(RepositoryFacade model, Stage stage) {
+    public Controller(BookRepositoryFacade model, Stage stage) {
         this.model = model;
         stage.setOnCloseRequest(e -> model.close());
     }
 
     public void initialize() {
-        choiceBox.getItems().setAll(BookSearchType.values());
-        choiceBox.getSelectionModel().selectFirst();
+        //choiceBox.getItems().setAll(BookSearchType.values());
+        //choiceBox.getSelectionModel().selectFirst();
     }
 
     public void onSearch(ActionEvent event) {

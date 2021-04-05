@@ -1,9 +1,6 @@
-package com.almasb.libraryloan.booklist;
+package com.innsmouth.library.data.query;
 
-import java.util.Arrays;
-import java.util.List;
-
-public class Book {
+public class BookQuery {
 
     private long bookID;
     private String title;
@@ -90,7 +87,7 @@ public class Book {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Book other = (Book) obj;
+        BookQuery other = (BookQuery) obj;
         if (author == null) {
             if (other.author != null)
                 return false;
