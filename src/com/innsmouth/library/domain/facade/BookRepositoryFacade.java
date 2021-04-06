@@ -20,14 +20,8 @@ public class BookRepositoryFacade {
         }
     }
 
-    public void addNewBook(String name, String author, int year) {
-        Book book = new Book();
-        //book.setAvailable(true);
-        book.setTitle(name);
-        book.setAuthor(author);
-        book.setPublishYear(year);
-
-        repository.insertBook(book);
+    public void addNewBook(BookQuery bookQuery) {
+        repository.insertBook(bookQuery);
     }
 
     public List<Book> findAll(){

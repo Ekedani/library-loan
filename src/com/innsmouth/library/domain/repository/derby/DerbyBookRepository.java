@@ -53,16 +53,35 @@ public class DerbyBookRepository implements BookRepository {
     }
 
     @Override
-    public long insertBook(Book book) {
+    public long insertBook(BookQuery bookQuery) {
+        String[] queryParams = generateAddParams(bookQuery);
+        String sqlAddQuery = generateAddQuery();
 
         try {
-            return dbAccess.insert(connection, "INSERT INTO BOOK (title, author, PUBLISHYEAR, COPIESPRESENT) VALUES (?, ?, ?, ?)",
-                    new ScalarHandler<BigDecimal>(), book.getTitle(), book.getAuthor(), book.getPublishYear(), 13).longValue();
+            return dbAccess.insert(connection, sqlAddQuery, new ScalarHandler<BigDecimal>(), queryParams).longValue();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         return -1L;
+    }
+
+    private String generateAddQuery() {
+        return "INSERT INTO BOOK (title, author, genre, PUBLISHYEAR, annotation, COPIESGIVEN, copiespresent) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    }
+
+    private String[] generateAddParams(BookQuery bookQuery) {
+        final int paramsNum = 7;
+        String[] result = new String[paramsNum];
+        result[0] = bookQuery.getTitle();
+        result[1] = bookQuery.getAuthor();
+        result[2] = bookQuery.getGenre();
+        result[3] = Integer.toString(bookQuery.getPublishYear());
+        result[4] = bookQuery.getAnnotation();
+        result[5] = Integer.toString( bookQuery.getCopiesGiven());
+        result[6] = Integer.toString( bookQuery.getCopiesPresent());
+
+        return result;
     }
 
     @Override

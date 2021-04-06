@@ -7,7 +7,7 @@ import com.innsmouth.library.domain.repository.base.Repository;
 import java.util.List;
 
 public interface BookRepository extends Repository {
-   long insertBook(Book book);
+   long insertBook(BookQuery book);
    boolean updateBook(Book book);
    boolean deleteBook(Book book);
 
