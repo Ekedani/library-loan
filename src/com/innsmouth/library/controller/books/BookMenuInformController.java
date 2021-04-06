@@ -18,6 +18,25 @@ import java.text.ParsePosition;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class BookMenuInformController {
+public class BookMenuInformController implements Initializable {
+    private final BookRepositoryFacade facade;
 
+    @FXML
+    private TextField bookMenu_title;
+    @FXML
+    private TextField bookMenu_author;
+    @FXML
+    private TextField bookMenu_year;
+    @FXML
+    private TextField bookMenu_genre;
+    @FXML
+    private TextField bookMenu_amount;
+    @FXML
+    private TextArea bookMenu_annotation;
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        configUI();
+    }
 }

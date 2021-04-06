@@ -17,10 +17,10 @@
     <Button fx:id="bookMenu_addBtn" layoutX="236.0" layoutY="385.0" mnemonicParsing="false" onAction="#onAddBook" prefHeight="25.0" prefWidth="43.0" text="Edit" />
     <Button fx:id="bookMenu_addBtn1" layoutX="182.0" layoutY="385.0" mnemonicParsing="false" onAction="#onAddBook" text="Order" />
     <Button fx:id="bookMenu_addBtn11" layoutX="22.0" layoutY="385.0" mnemonicParsing="false" onAction="#onAddBook" text="Back" />
-   <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="19.0" layoutY="228.0" prefHeight="144.0" prefWidth="259.0" text="Label" textAlignment="JUSTIFY" />
-   <Label layoutX="75.0" layoutY="149.0" prefHeight="17.0" prefWidth="149.0" text="AMMOUNT" />
-   <Label layoutX="75.0" layoutY="116.0" prefHeight="17.0" prefWidth="149.0" text="YEAR" />
-   <Label layoutX="75.0" layoutY="85.0" prefHeight="17.0" prefWidth="149.0" text="GENRE" />
-   <Label layoutX="75.0" layoutY="55.0" prefHeight="17.0" prefWidth="149.0" text="AUTHOR" />
-   <Label layoutX="74.0" layoutY="17.0" prefHeight="17.0" prefWidth="149.0" text="TITLE" />
+   <Label id="menuInform_Annotation" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="19.0" layoutY="228.0" prefHeight="144.0" prefWidth="259.0" text="Label" textAlignment="JUSTIFY" />
+   <Label id="menuInform_Ammount" layoutX="75.0" layoutY="149.0" prefHeight="17.0" prefWidth="149.0" text="AMMOUNT" />
+   <Label id="menuInform_Year" layoutX="75.0" layoutY="116.0" prefHeight="17.0" prefWidth="149.0" text="YEAR" />
+   <Label id="menuInform_Genre" layoutX="75.0" layoutY="85.0" prefHeight="17.0" prefWidth="149.0" text="GENRE" />
+   <Label id="menuInform_Author" layoutX="75.0" layoutY="55.0" prefHeight="17.0" prefWidth="149.0" text="AUTHOR" />
+   <Label id="menuInform_Title" layoutX="74.0" layoutY="17.0" prefHeight="17.0" prefWidth="149.0" text="TITLE" />
 </Pane>
