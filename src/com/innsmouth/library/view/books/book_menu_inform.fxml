@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="297.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.innsmouth.library.controller.books.AddBookController">
+    <Separator layoutX="14.0" layoutY="43.0" prefHeight="2.0" prefWidth="271.0" />
+    <Separator layoutX="14.0" layoutY="195.0" prefHeight="2.0" prefWidth="271.0" />
+
+    <Label layoutX="14.0" layoutY="14.0" prefHeight="23.0" prefWidth="50.0" text="Title" />
+    <Label layoutX="14.0" layoutY="55.0" prefHeight="17.0" prefWidth="38.0" text="Author" />
+    <Label layoutX="14.0" layoutY="85.0" text="Genre" />
+    <Label layoutX="14.0" layoutY="116.0" text="Year" />
+    <Label layoutX="14.0" layoutY="149.0" text="Amount" />
+    <Label layoutX="16.0" layoutY="203.0" text="Annotation" />
+
+    <Button fx:id="bookMenu_addBtn" layoutX="236.0" layoutY="385.0" mnemonicParsing="false" onAction="#onAddBook" prefHeight="25.0" prefWidth="43.0" text="Edit" />
+    <Button fx:id="bookMenu_addBtn1" layoutX="182.0" layoutY="385.0" mnemonicParsing="false" onAction="#onAddBook" text="Order" />
+    <Button fx:id="bookMenu_addBtn11" layoutX="22.0" layoutY="385.0" mnemonicParsing="false" onAction="#onAddBook" text="Back" />
+   <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="19.0" layoutY="228.0" prefHeight="144.0" prefWidth="259.0" text="Label" textAlignment="JUSTIFY" />
+   <Label layoutX="75.0" layoutY="149.0" prefHeight="17.0" prefWidth="149.0" text="AMMOUNT" />
+   <Label layoutX="75.0" layoutY="116.0" prefHeight="17.0" prefWidth="149.0" text="YEAR" />
+   <Label layoutX="75.0" layoutY="85.0" prefHeight="17.0" prefWidth="149.0" text="GENRE" />
+   <Label layoutX="75.0" layoutY="55.0" prefHeight="17.0" prefWidth="149.0" text="AUTHOR" />
+   <Label layoutX="74.0" layoutY="17.0" prefHeight="17.0" prefWidth="149.0" text="TITLE" />
+</Pane>
