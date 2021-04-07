@@ -1,6 +1,5 @@
 package com.innsmouth.library.domain.facade;
 
-import com.innsmouth.library.data.dataobject.Book;
 import com.innsmouth.library.data.dataobject.User;
 import com.innsmouth.library.data.query.UserQuery;
 import com.innsmouth.library.domain.repository.api.UserRepository;
@@ -20,14 +19,18 @@ public class UserRepositoryFacade {
         }
     }
 
-    public void addNewUser(String name, String address, String email) {
-        User user = new User();
+    public void addNewUser(String name, String address, String email, String password, long number) {
+        UserQuery user = new UserQuery();
         user.setName(name);
         user.setAddress(address);
         user.setEmail(email);
+        user.setPassword(password);
+        user.setNumber(number);
 
         repository.insertUser(user);
     }
+
+
 
 
 }
