@@ -63,7 +63,7 @@ public class AddUserController implements Initializable {
 
     private void addUser() {
         UserQuery query = createQuery();
-        facade.addNewBook(query);
+        //facade.addNewBook(query); //TODO: facade для юзера
     }
 
     private UserQuery createQuery() {
@@ -73,7 +73,7 @@ public class AddUserController implements Initializable {
         result.setNumber(getNumber());
         result.setEmail(getEmail());
         result.setPassword(getPassword());
-        result.setId();
+        //result.setId(); //Необходима передача
 
         return result;
     }
