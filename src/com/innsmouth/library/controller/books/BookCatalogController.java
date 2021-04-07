@@ -3,11 +3,14 @@ package com.innsmouth.library.controller.books;
 import com.innsmouth.library.data.query.BookQuery;
 import com.innsmouth.library.domain.facade.BookRepositoryFacade;
 import com.innsmouth.library.data.dataobject.Book;
+import com.innsmouth.library.domain.repository.derby.DerbyBookRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
@@ -19,6 +22,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class BookCatalogController implements Initializable {
+    private final Stage stage;
+
     @FXML
     private TextField searchBook_genre;
     @FXML
@@ -42,9 +47,12 @@ public class BookCatalogController implements Initializable {
     private final BookRepositoryFacade facade;
 
     private final ObservableList<Book> bookObservableList = FXCollections.observableArrayList();
+    @FXML
+    private Button searchBook_nextScreenBtn;
 
     public BookCatalogController(BookRepositoryFacade facade, Stage stage) {
         this.facade = facade;
+        this.stage = stage;
         stage.setOnCloseRequest(e -> facade.close());
     }
 
@@ -128,5 +136,37 @@ public class BookCatalogController implements Initializable {
         System.out.println("author: " + getAuthorText());
         System.out.println("year: " + getYearText());
         System.out.println("genre: " + getGenreText());
+    }
+
+    @FXML
+    private void onNextScreen(ActionEvent actionEvent) {
+        try {
+            changeScene();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void changeScene() throws Exception {
+        Scene scene = generateScene();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private Scene generateScene() throws Exception {
+        Stage stage = (Stage) searchBook_nextScreenBtn.getScene().getWindow();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/innsmouth/library/view/books/add_book.fxml"));
+        loader.setControllerFactory(t -> createController(stage));
+
+        return new Scene(loader.load());
+    }
+
+    private AddBookController createController(Stage stage) {
+        return new AddBookController(createLibrary(), stage);
+    }
+
+    private BookRepositoryFacade createLibrary() {
+        return new BookRepositoryFacade(new DerbyBookRepository());
     }
 }

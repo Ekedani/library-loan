@@ -23,5 +23,7 @@
       <TextField fx:id="searchBook_genre" layoutX="149.0" layoutY="187.0" onAction="#onSearch" />
       <Button fx:id="searchBook_searchBtn" layoutX="149.0" layoutY="248.0" mnemonicParsing="false" onAction="#onSearch" text="Search" />
       <Button fx:id="searchBook_showAllBtn" layoutX="236.0" layoutY="248.0" mnemonicParsing="false" onAction="#onShowAll" text="Show All" />
+       <Button fx:id="searchBook_nextScreenBtn" layoutX="330.0" layoutY="248.0" mnemonicParsing="false" onAction="#onNextScreen" text="Next Screen" />
+
    </children>
 </Pane>
