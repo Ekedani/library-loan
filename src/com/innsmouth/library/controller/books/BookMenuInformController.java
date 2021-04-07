@@ -7,12 +7,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class BookMenuInformController implements Initializable {
     private final BookRepositoryFacade facade;
+    private final long selectedBookId;
 
     @FXML
     private Label menuInform_Ammount;
@@ -30,8 +32,10 @@ public class BookMenuInformController implements Initializable {
     private Label menuInform_Annotation;
 
 
-    public BookMenuInformController(BookRepositoryFacade facade) {
+    public BookMenuInformController(BookRepositoryFacade facade, Stage stage, long selectedBookId) {
         this.facade = facade;
+        stage.setOnCloseRequest(e -> facade.close());
+        this.selectedBookId = selectedBookId;
     }
 
     @Override
@@ -41,7 +45,7 @@ public class BookMenuInformController implements Initializable {
 
     public void setLabels(){
         Book result;
-        result = facade.selectBookByID(2);
+        result = facade.selectBookByID(selectedBookId);
         menuInform_Ammount.setText(String.valueOf(result.getCopiesPresent()));
         menuInform_Year.setText(String.valueOf(result.getPublishYear()));
         menuInform_Genre.setText(result.getGenre());

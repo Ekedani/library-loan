@@ -16,13 +16,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.text.DecimalFormat;
-import java.text.ParsePosition;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class BookCatalogController implements Initializable {
     private final Stage stage;
+    private final long NOTHING_SELECTED = -1;
 
     @FXML
     private TextField searchBook_genre;
@@ -48,7 +47,7 @@ public class BookCatalogController implements Initializable {
 
     private final ObservableList<Book> bookObservableList = FXCollections.observableArrayList();
     @FXML
-    private Button searchBook_nextScreenBtn;
+    private Button searchBook_moreBtn;
 
     public BookCatalogController(BookRepositoryFacade facade, Stage stage) {
         this.facade = facade;
@@ -121,7 +120,7 @@ public class BookCatalogController implements Initializable {
 
     private int getYearText() {
         String yearText = searchBook_year.getText();
-        if (yearText.isEmpty()){
+        if (yearText.isEmpty()) {
             return 0;
         }
         return Integer.parseInt(yearText);
@@ -139,7 +138,7 @@ public class BookCatalogController implements Initializable {
     }
 
     @FXML
-    private void onNextScreen(ActionEvent actionEvent) {
+    private void onMoreClicked(ActionEvent actionEvent) {
         try {
             changeScene();
         } catch (Exception e) {
@@ -148,25 +147,44 @@ public class BookCatalogController implements Initializable {
     }
 
     public void changeScene() throws Exception {
-        Scene scene = generateScene();
+        final long selectedId = getSelectedId();
+        if (selectedId == NOTHING_SELECTED) {
+            return;
+        }
+
+        Scene scene = generateInformBookScene(selectedId);
         stage.setScene(scene);
         stage.show();
     }
 
-    private Scene generateScene() throws Exception {
-        Stage stage = (Stage) searchBook_nextScreenBtn.getScene().getWindow();
+    private Scene generateInformBookScene(final long selectedId) throws Exception {
+        Stage stage = (Stage) searchBook_moreBtn.getScene().getWindow();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/innsmouth/library/view/books/add_book.fxml"));
-        loader.setControllerFactory(t -> createController(stage));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/innsmouth/library/view/books/book_menu_inform.fxml"));
+        loader.setControllerFactory(t -> createInformBookController(stage, selectedId));
 
         return new Scene(loader.load());
     }
 
-    private AddBookController createController(Stage stage) {
-        return new AddBookController(createLibrary(), stage);
+    private BookMenuInformController createInformBookController(Stage stage, final long selectedId) {
+        return new BookMenuInformController(createFacade(), stage, selectedId);
     }
 
-    private BookRepositoryFacade createLibrary() {
+    private long getSelectedId() {
+        Book selectedBook = book_table.getSelectionModel().getSelectedItem();
+        logSelectedBook(selectedBook);
+
+        if (selectedBook == null) return NOTHING_SELECTED;
+
+        return selectedBook.getBookID();
+    }
+
+    private void logSelectedBook(Book selectedBook) {
+        System.out.println("selectedBook is ");
+        System.out.println(selectedBook);
+    }
+
+    private BookRepositoryFacade createFacade() {
         return new BookRepositoryFacade(new DerbyBookRepository());
     }
 }

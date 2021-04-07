@@ -14,15 +14,15 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/innsmouth/library/view/books/book_menu_inform.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/innsmouth/library/view/books/book_catalog.fxml"));
         loader.setControllerFactory(t -> createController(stage));
 
         stage.setScene(new Scene(loader.load()));
         stage.show();
     }
 
-    private BookMenuInformController createController(Stage stage) {
-        return new BookMenuInformController(createLibrary());
+    private BookCatalogController createController(Stage stage) {
+        return new BookCatalogController(createLibrary(), stage);
     }
 
     private BookRepositoryFacade createLibrary() {
