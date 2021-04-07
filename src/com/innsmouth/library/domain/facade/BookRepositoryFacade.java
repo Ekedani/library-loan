@@ -30,6 +30,8 @@ public class BookRepositoryFacade {
 
     public void deleteBook(BookQuery bookQuery) {repository.deleteBook(bookQuery);}
 
+    public Book selectBookByID(long ID){return repository.selectBookById(ID);}
+
     public List<Book> findAll(){
         return repository.findAll();
     }

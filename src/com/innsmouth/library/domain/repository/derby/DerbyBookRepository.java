@@ -128,14 +128,16 @@ public class DerbyBookRepository implements BookRepository {
         return EMPTY;
     }
 
-    /*@Override
-    public Book selectBookById(){
+    @Override
+    public Book selectBookById(long ID){
         try {
-            return dbAccess.query(connection, "select * from book where BOOKID=?", new BeanListHandler<>(Book.class));
+            List<Book> bookList = dbAccess.query(connection, "select * from book where BOOKID=?", new BeanListHandler<>(Book.class), ID);
+            return bookList.get(0);
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }*/
+        return new Book();
+    }
 
     private String createSqlLikeQuery(ArrayList<String> whereClauses) {
         StringBuilder sqlQuery = new StringBuilder();

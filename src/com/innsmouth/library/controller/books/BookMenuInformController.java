@@ -1,5 +1,6 @@
 package com.innsmouth.library.controller.books;
 
+import com.innsmouth.library.data.dataobject.Book;
 import com.innsmouth.library.data.query.BookQuery;
 import com.innsmouth.library.domain.facade.BookRepositoryFacade;
 import javafx.event.ActionEvent;
@@ -39,8 +40,8 @@ public class BookMenuInformController implements Initializable {
     }
 
     public void setLabels(){
-        BookQuery result = new BookQuery();
-        result.setBookID(4);
+        Book result;
+        result = facade.selectBookByID(2);
         menuInform_Ammount.setText(String.valueOf(result.getCopiesPresent()));
         menuInform_Year.setText(String.valueOf(result.getPublishYear()));
         menuInform_Genre.setText(result.getGenre());
