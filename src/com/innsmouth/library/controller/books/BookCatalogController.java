@@ -4,6 +4,7 @@ import com.innsmouth.library.data.query.BookQuery;
 import com.innsmouth.library.domain.facade.BookRepositoryFacade;
 import com.innsmouth.library.data.dataobject.Book;
 import com.innsmouth.library.domain.repository.derby.DerbyBookRepository;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,11 +18,14 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class BookCatalogController implements Initializable {
     private final Stage stage;
-    private final long NOTHING_SELECTED = -1;
+    private final long selectedBookId;
+    private static final long NOTHING_SELECTED = -1;
 
     @FXML
     private TextField searchBook_genre;
@@ -50,8 +54,13 @@ public class BookCatalogController implements Initializable {
     private Button searchBook_moreBtn;
 
     public BookCatalogController(BookRepositoryFacade facade, Stage stage) {
+        this(facade, stage, NOTHING_SELECTED);
+    }
+
+    public BookCatalogController(BookRepositoryFacade facade, Stage stage, long selectedBookId) {
         this.facade = facade;
         this.stage = stage;
+        this.selectedBookId = selectedBookId;
         stage.setOnCloseRequest(e -> facade.close());
     }
 
@@ -71,6 +80,33 @@ public class BookCatalogController implements Initializable {
     }
 
     private void configTableView() {
+        configColumns();
+        setSelectedBook();
+    }
+
+    private void setSelectedBook() {
+        if (selectedBookId == NOTHING_SELECTED) return;
+        int selectedItemInd = getSelectedBookIndById();
+        Platform.runLater(() -> {
+            book_table.requestFocus();
+            book_table.getSelectionModel().select(selectedItemInd);
+            book_table.getFocusModel().focus(selectedItemInd);
+        });
+
+    }
+
+    private int getSelectedBookIndById() {
+        List<Book> bookList = book_table.getItems();
+        for (int i = 0; i < bookList.size(); i++) {
+            Book currBook = bookList.get(i);
+            if (selectedBookId == currBook.getBookID()) {
+                return i;
+            }
+        }
+        return (int) NOTHING_SELECTED;
+    }
+
+    private void configColumns() {
         col_title.setCellValueFactory(new PropertyValueFactory<>("title"));
         col_genre.setCellValueFactory(new PropertyValueFactory<>("genre"));
         col_author.setCellValueFactory(new PropertyValueFactory<>("author"));
@@ -170,6 +206,10 @@ public class BookCatalogController implements Initializable {
         return new BookMenuInformController(createFacade(), stage, selectedId);
     }
 
+    private BookRepositoryFacade createFacade() {
+        return new BookRepositoryFacade(new DerbyBookRepository());
+    }
+
     private long getSelectedId() {
         Book selectedBook = book_table.getSelectionModel().getSelectedItem();
         logSelectedBook(selectedBook);
@@ -179,12 +219,9 @@ public class BookCatalogController implements Initializable {
         return selectedBook.getBookID();
     }
 
+
     private void logSelectedBook(Book selectedBook) {
         System.out.println("selectedBook is ");
         System.out.println(selectedBook);
-    }
-
-    private BookRepositoryFacade createFacade() {
-        return new BookRepositoryFacade(new DerbyBookRepository());
     }
 }
