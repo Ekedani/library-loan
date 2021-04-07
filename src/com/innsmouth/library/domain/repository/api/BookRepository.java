@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface BookRepository extends Repository {
    long insertBook(BookQuery book);
-   boolean updateBook(Book book);
-   boolean deleteBook(Book book);
+   boolean updateBook(BookQuery book);
+   boolean deleteBook(BookQuery book);
 
    List<Book> findBookByProperty(BookQuery query);
    List<Book> findAll();

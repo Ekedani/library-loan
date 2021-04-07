@@ -85,11 +85,11 @@ public class DerbyBookRepository implements BookRepository {
     }
 
     @Override
-    public boolean updateBook(Book book) {
+    public boolean updateBook(BookQuery book) {
 
         try {
-            dbAccess.update(connection, "UPDATE Book SET title=?, author=?, PUBLISHYEAR=?, COPIESPRESENT=? WHERE BOOKID=?",
-                    book.getTitle(), book.getAuthor(), book.getPublishYear(), 555, book.getBookID());
+            dbAccess.update(connection, "UPDATE Book SET title=?, author=?, PUBLISHYEAR=?, COPIESPRESENT=?, GENRE=?, ANNOTATION=? WHERE BOOKID=?",
+                    book.getTitle(), book.getAuthor(), book.getPublishYear(), book.getCopiesPresent(), book.getGenre(), book.getAnnotation(), book.getBookID());
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -99,7 +99,7 @@ public class DerbyBookRepository implements BookRepository {
     }
 
     @Override
-    public boolean deleteBook(Book book) {
+    public boolean deleteBook(BookQuery book) {
         try {
             dbAccess.update(connection, "DELETE FROM book WHERE BOOKID=?", book.getBookID());
             return true;

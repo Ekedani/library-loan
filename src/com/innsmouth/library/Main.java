@@ -1,6 +1,7 @@
 package com.innsmouth.library;
 
 import com.innsmouth.library.controller.books.AddBookController;
+import com.innsmouth.library.controller.books.BookMenuEditController;
 import com.innsmouth.library.domain.facade.BookRepositoryFacade;
 import com.innsmouth.library.controller.books.BookCatalogController;
 import com.innsmouth.library.domain.repository.derby.DerbyBookRepository;
@@ -12,15 +13,15 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/innsmouth/library/view/books/add_book.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/innsmouth/library/view/books/book_menu_edit.fxml"));
         loader.setControllerFactory(t -> createController(stage));
 
         stage.setScene(new Scene(loader.load()));
         stage.show();
     }
 
-    private AddBookController createController(Stage stage) {
-        return new AddBookController(createLibrary(), stage);
+    private BookMenuEditController createController(Stage stage) {
+        return new BookMenuEditController(createLibrary());
     }
 
     private BookRepositoryFacade createLibrary() {

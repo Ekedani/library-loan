@@ -20,9 +20,15 @@ public class BookRepositoryFacade {
         }
     }
 
+    public void updateBook(BookQuery bookQuery) {
+        repository.updateBook(bookQuery);
+    }
+
     public void addNewBook(BookQuery bookQuery) {
         repository.insertBook(bookQuery);
     }
+
+    public void deleteBook(BookQuery bookQuery) {repository.deleteBook(bookQuery);}
 
     public List<Book> findAll(){
         return repository.findAll();
