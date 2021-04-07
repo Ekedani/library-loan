@@ -49,6 +49,8 @@ public class BookMenuEditController implements Initializable {
         facade.updateBook(query);
     }
 
+
+
     private BookQuery createQuery() {
         BookQuery result = new BookQuery();
         result.setBookID(101);

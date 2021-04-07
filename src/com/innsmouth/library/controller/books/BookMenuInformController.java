@@ -1,6 +1,8 @@
-/*package com.innsmouth.library.controller.books;
+package com.innsmouth.library.controller.books;
 
+import com.innsmouth.library.data.query.BookQuery;
 import com.innsmouth.library.domain.facade.BookRepositoryFacade;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -26,12 +28,33 @@ public class BookMenuInformController implements Initializable {
     @FXML
     private Label menuInform_Annotation;
 
+
     public BookMenuInformController(BookRepositoryFacade facade) {
         this.facade = facade;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        configUI();
+        setLabels();
     }
-}*/
+
+    public void setLabels(){
+        BookQuery result = new BookQuery();
+        result.setBookID(4);
+        menuInform_Ammount.setText(String.valueOf(result.getCopiesPresent()));
+        menuInform_Year.setText(String.valueOf(result.getPublishYear()));
+        menuInform_Genre.setText(result.getGenre());
+        menuInform_Author.setText(result.getAuthor());
+        menuInform_Annotation.setText(result.getAnnotation());
+        menuInform_Title.setText(result.getTitle());
+    }
+
+    public void onAddBook(ActionEvent actionEvent) {
+    }
+
+    public void onOrderBook(ActionEvent actionEvent) {
+    }
+
+    public void onEditBook(ActionEvent actionEvent) {
+    }
+}
