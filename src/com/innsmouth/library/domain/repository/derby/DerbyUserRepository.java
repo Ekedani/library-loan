@@ -165,23 +165,23 @@ public class DerbyUserRepository implements UserRepository {
     }
 
     private void nameLikeClause(ArrayList<String> whereClauses, ArrayList<String> valueClauses, UserQuery query) {
-        String genreQueryText = query.getName();
-        addLikeClause(whereClauses, valueClauses, genreQueryText, NAME_COL);
+        String nameQueryText = query.getName();
+        addLikeClause(whereClauses, valueClauses, nameQueryText, NAME_COL);
     }
 
     private void addressLikeClause(ArrayList<String> whereClauses, ArrayList<String> valueClauses, UserQuery query) {
-        String genreQueryText = query.getName();
-        addLikeClause(whereClauses, valueClauses, genreQueryText, ADDRESS_COL);
+        String addressQueryText = query.getAddress();
+        addLikeClause(whereClauses, valueClauses, addressQueryText, ADDRESS_COL);
     }
 
     private void numberLikeClause(ArrayList<String> whereClauses, ArrayList<String> valueClauses, UserQuery query) {
-        String genreQueryText = query.getName();
-        addLikeClause(whereClauses, valueClauses, genreQueryText, NUMBER_COL);
+        String numberQueryText = String.valueOf(query.getNumber());
+        addLikeClause(whereClauses, valueClauses, numberQueryText, NUMBER_COL);
     }
 
     private void emailLikeClause(ArrayList<String> whereClauses, ArrayList<String> valueClauses, UserQuery query) {
-        String genreQueryText = query.getName();
-        addLikeClause(whereClauses, valueClauses, genreQueryText, EMAIL_COL);
+        String emailQueryText = query.getEmail();
+        addLikeClause(whereClauses, valueClauses, emailQueryText, EMAIL_COL);
     }
 
 
