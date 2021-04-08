@@ -1,12 +1,7 @@
 package com.innsmouth.library;
 
 import com.innsmouth.library.controller.books.AddBookController;
-<<<<<<<HEAD
-import com.innsmouth.library.controller.books.BookMenuEditController;
-import com.innsmouth.library.controller.books.BookMenuInformController;
-=======
 import com.innsmouth.library.controller.login.LoginController;
->>>>>>>login
 import com.innsmouth.library.domain.facade.BookRepositoryFacade;
 import com.innsmouth.library.controller.books.BookCatalogController;
 import com.innsmouth.library.domain.facade.LoginFacade;
