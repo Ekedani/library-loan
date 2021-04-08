@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="297.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.innsmouth.library.controller.users.AddUserController">
+    <children>
+        <Label layoutX="14.0" layoutY="26.0" prefHeight="23.0" prefWidth="50.0" text="Name">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+        <Label layoutX="14.0" layoutY="76.0" prefHeight="25.0" prefWidth="71.0" text="Adress">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+        <Label layoutX="13.0" layoutY="128.0" text="Phone number">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+        <Label layoutX="19.0" layoutY="172.0" text="Email">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+        <Button fx:id="userAdd_addBtn" layoutX="104.0" layoutY="279.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="90.0" text="Add" onAction="#onAddUser">
+         <font>
+            <Font size="24.0" />
+         </font></Button>
+        <TextField fx:id="userAdd_email" layoutX="128.0" layoutY="172.0" prefHeight="3.0" prefWidth="149.0" />
+        <TextField fx:id="userAdd_number" layoutX="128.0" layoutY="128.0" prefHeight="3.0" prefWidth="149.0" />
+        <TextField fx:id="userAdd_address" layoutX="128.0" layoutY="76.0" prefHeight="3.0" prefWidth="149.0" />
+        <TextField fx:id="userAdd_name" layoutX="128.0" layoutY="26.0" prefHeight="3.0" prefWidth="149.0" />
+      <Label layoutX="16.0" layoutY="212.0" text="Password">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="userAdd_password" layoutX="128.0" layoutY="212.0" />
+    </children>
+</Pane>
