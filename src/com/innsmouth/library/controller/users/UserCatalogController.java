@@ -51,6 +51,7 @@ public class UserCatalogController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         configUI();
+        populateTableViewWithAllUsers();
     }
 
     private void configUI() {
@@ -58,6 +59,8 @@ public class UserCatalogController implements Initializable {
     }
 
     private void configTableView() {
+        user_table.setItems(userObservableList);
+
         col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
         col_address.setCellValueFactory(new PropertyValueFactory<>("address"));

@@ -18,7 +18,7 @@ public class DerbyUserRepository implements UserRepository {
     private static final String NAME_COL = "Name";
     private static final String ADDRESS_COL = "Address";
     private static final String EMAIL_COL = "EMail";
-    private static final String NUMBER_COL = "Number";
+    private static final String NUMBER_COL = "PhoneNumber";
 
     private static final String DATABASE_PATH = "//localhost:1527/library";
 
@@ -123,7 +123,7 @@ public class DerbyUserRepository implements UserRepository {
 
     private String createSqlLikeQuery(ArrayList<String> whereClauses) {
         StringBuilder sqlQuery = new StringBuilder();
-        sqlQuery.append("SELECT * FROM user WHERE");
+        sqlQuery.append("SELECT * FROM READER WHERE");
 
         AtomicReference<Boolean> isFirst = new AtomicReference<>(true);
         whereClauses.forEach(clause -> {
@@ -176,7 +176,18 @@ public class DerbyUserRepository implements UserRepository {
 
     private void numberLikeClause(ArrayList<String> whereClauses, ArrayList<String> valueClauses, UserQuery query) {
         String numberQueryText = String.valueOf(query.getNumber());
-        addLikeClause(whereClauses, valueClauses, numberQueryText, NUMBER_COL);
+        addEqualsClause(whereClauses, valueClauses, numberQueryText, NUMBER_COL);
+    }
+
+    private void addEqualsClause(ArrayList<String> whereClauses, ArrayList<String> valueClause,
+                                 String textToFind, String column) {
+        if (textToFind == null || textToFind.isEmpty()) return;
+
+        String whereText = column + " = ?";
+        String valueText = textToFind;
+
+        whereClauses.add(whereText);
+        valueClause.add(valueText);
     }
 
     private void emailLikeClause(ArrayList<String> whereClauses, ArrayList<String> valueClauses, UserQuery query) {
