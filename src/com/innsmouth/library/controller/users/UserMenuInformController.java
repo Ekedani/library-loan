@@ -17,7 +17,6 @@ import java.util.ResourceBundle;
 
 public class UserMenuInformController implements Initializable {
     public final static String LAYOUT = "/com/innsmouth/library/view/users/user_menu_inform.fxml";
-    UserSingleton userSingleton = UserSingleton.getInstance();
 
     public static UserMenuInformController createInstance(Stage stage, long selectedUserId) {
         return new UserMenuInformController(sCreateFacade(), stage, selectedUserId);
