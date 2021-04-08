@@ -7,7 +7,6 @@ import com.innsmouth.library.domain.repository.api.BookRepository;
 import java.util.List;
 
 public class BookRepositoryFacade {
-
     private final BookRepository repository;
 
     public BookRepositoryFacade(BookRepository repository) {
