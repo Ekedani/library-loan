@@ -10,6 +10,7 @@ import com.innsmouth.library.domain.repository.base.Repository;
 import java.util.List;
 
 public class UserRepositoryFacade {
+
     private final UserRepository repository;
 
     public UserRepositoryFacade(UserRepository repository) {
@@ -27,6 +28,7 @@ public class UserRepositoryFacade {
         repository.insertUser(query);
     }
 
+    public User selectUserByID(long ID){return repository.selectBookById(ID);}
 
     public List<User> search(UserQuery query) {
         return repository.findUserByProperty(query);

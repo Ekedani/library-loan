@@ -184,5 +184,14 @@ public class DerbyUserRepository implements UserRepository {
         addLikeClause(whereClauses, valueClauses, emailQueryText, EMAIL_COL);
     }
 
+    public User selectUserById(long ID){
+        try {
+            List<User> userList = dbAccess.query(connection, "select * from reader where READERID=?", new BeanListHandler<>(User.class), ID);
+            return userList.get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new User();
+    }
 
 }

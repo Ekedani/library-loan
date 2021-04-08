@@ -2,6 +2,7 @@ package com.innsmouth.library.controller.users;
 
 import javafx.event.ActionEvent;
 
+
 public class UserMenuEditController {
     public void onDeletePressed(ActionEvent actionEvent) {
     }

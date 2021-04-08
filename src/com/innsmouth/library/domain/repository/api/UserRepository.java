@@ -10,6 +10,8 @@ public interface UserRepository extends Repository {
     void insertUser(UserQuery user);
     boolean updateUser(UserQuery user);
     boolean deleteUser(UserQuery user);
+    User selectBookById(long id);
+
 
     List<User> findUserByProperty(UserQuery query);
     List<User> findAll();
