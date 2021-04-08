@@ -1,7 +1,14 @@
-package com.innsmouth.library.data.query;
+package com.innsmouth.library.data.dataobject;
 
-public class UserQuery {
+public class User {
     private String name;
+    private String address;
+    private long number;
+    private String email;
+    private String password;
+    private long id;
+
+    //Attributes getters and setters
 
     public String getName() {
         return name;
@@ -46,13 +53,5 @@ public class UserQuery {
     public long getId() {
         return id;
     }
-
-
-    private String address;
-    private long number;
-    private String email;
-    private String password;
-    private long id;
-
 
 }
