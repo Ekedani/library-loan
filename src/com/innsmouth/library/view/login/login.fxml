@@ -3,8 +3,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane fx:controller="com.innsmouth.library.controller.login.LoginController" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-    <Button fx:id="login_library" onAction="#onLibraryLogin" layoutX="16.0" layoutY="338.0" prefHeight="48.0" prefWidth="125.0" text="Library" />
-    <Button fx:id="login_user"    onAction="#onUserLogin" layoutX="461.0" layoutY="338.0" prefHeight="48.0" prefWidth="125.0" text="Reader" />
+<Pane prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.innsmouth.library.controller.login.LoginController">
+   <Button layoutX="14.0" layoutY="238.0" onAction="#onLibraryLogin" prefHeight="48.0" prefWidth="125.0" text="Library" />
+   <Button layoutX="461.0" layoutY="238.0" onAction="#onUserLogin" prefHeight="48.0" prefWidth="125.0" text="Reader" />
+   <Label fx:id="login_email" layoutX="193.0" layoutY="80.0" text="Email" />
+   <Label fx:id="login_password" layoutX="193.0" layoutY="119.0" text="Password" />
+   <TextField layoutX="258.0" layoutY="76.0" />
+   <TextField layoutX="258.0" layoutY="115.0" />
 
 </Pane>
