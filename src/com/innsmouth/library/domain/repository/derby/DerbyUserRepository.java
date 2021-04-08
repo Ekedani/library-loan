@@ -14,11 +14,17 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class DerbyUserRepository implements UserRepository {
+    private static final String NAME_COL = "Name";
+    private static final String ADDRESS_COL = "Address";
+    private static final String EMAIL_COL = "EMail";
+    private static final String NUMBER_COL = "Number";
+
     private static final String DATABASE_PATH = "//localhost:1527/library";
-    //TODO: Добавить columns
-    private static final List<Book> EMPTY = new ArrayList<>();
+
+    private static final List<User> EMPTY = new ArrayList<>();
 
     private Connection connection;
     private final QueryRunner dbAccess = new QueryRunner();
@@ -117,7 +123,31 @@ public class DerbyUserRepository implements UserRepository {
         }
     }
 
-    //TODO: Прописать клаузы
+    private String createSqlLikeQuery(ArrayList<String> whereClauses) {
+        StringBuilder sqlQuery = new StringBuilder();
+        sqlQuery.append("SELECT * FROM user WHERE");
+
+        AtomicReference<Boolean> isFirst = new AtomicReference<>(true);
+        whereClauses.forEach(clause -> {
+            appendClauses(isFirst.get(), sqlQuery, clause);
+            isFirst.set(false);
+        });
+
+        return sqlQuery.toString();
+    }
+
+    private void appendClauses(Boolean isFirst, StringBuilder sqlQuery, String likeClause) {
+        String separator;
+        if (isFirst) {
+            separator = " ";
+        } else {
+            separator = " OR ";
+        }
+        sqlQuery.append(separator);
+
+        sqlQuery.append(likeClause);
+    }
+
     private void generateClauses(ArrayList<String> whereClauses, ArrayList<String> valueClauses, UserQuery query) {
         nameLikeClause(whereClauses, valueClauses, query);
         addressLikeClause(whereClauses, valueClauses, query);
