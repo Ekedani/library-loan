@@ -5,6 +5,7 @@ import com.innsmouth.library.data.query.UserQuery;
 import com.innsmouth.library.domain.facade.UserRepositoryFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -76,7 +77,11 @@ public class UserCatalogController implements Initializable {
     }
 
     private Long getNumber() {
-        return Long.parseLong(searchUser_number.getText());
+        String text = searchUser_number.getText();
+
+        if (text.isEmpty()) return 0l;
+
+        return Long.parseLong(text);
     }
 
     private String getAddress() {
@@ -123,5 +128,10 @@ public class UserCatalogController implements Initializable {
 
     public void onShowAll(/*ActionEvent actionEvent*/) {
         populateTableViewWithAllUsers();
+    }
+
+    @FXML
+    private void onMorePressed(ActionEvent actionEvent) {
+
     }
 }

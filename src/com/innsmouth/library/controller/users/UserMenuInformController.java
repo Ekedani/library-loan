@@ -12,6 +12,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class UserMenuInformController implements Initializable {
+    public final static String LAYOUT = "/com/innsmouth/library/view/books/book_menu_inform.fxml";
+    //UserSingleton userSingleton = UserSingleton.getInstance();
+
 
     private final Stage stage;
     private final long selectedUserId;
@@ -28,7 +31,7 @@ public class UserMenuInformController implements Initializable {
     @FXML
     private Label userMenu_Name;
 
-    public UserMenuInformController(Stage stage, long selectedUserId, UserRepositoryFacade facade) {
+    public UserMenuInformController(UserRepositoryFacade facade, Stage stage, long selectedUserId) {
         this.stage = stage;
         this.selectedUserId = selectedUserId;
         this.facade = facade;

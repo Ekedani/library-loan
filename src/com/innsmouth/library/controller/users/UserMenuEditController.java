@@ -43,26 +43,26 @@ public class UserMenuEditController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        userMenu_ID.setText(String.valueOf(selectedUserID));
+        //userMenu_ID.setText(String.valueOf(selectedUserID));
         //configUI(); //TODO: Сделать некоторые поля интовыми
     }
 
     private void setUserInfo() {
-        //TODO: фикс фасада + перходы по кнопкам
-        User selectedUser = facade.selectBookByID(selectedUserID);
-        userMenu_Name.setText(selectedUser.getName());
-        userMenu_Address.setText(selectedUser.getAddress());
-        userMenu_PhoneNumber.setText(String.valueOf(selectedUser.getPhoneNumber()));
-        userMenu_Email.setText(selectedUser.getEmail());
+        ////TODO: фикс фасада + перходы по кнопкам
+        //User selectedUser = facade.selectBookByID(selectedUserID);
+        //userMenu_Name.setText(selectedUser.getName());
+        //userMenu_Address.setText(selectedUser.getAddress());
+        //userMenu_PhoneNumber.setText(String.valueOf(selectedUser.getPhoneNumber()));
+        //userMenu_Email.setText(selectedUser.getEmail());
     }
 
     private UserQuery createQuery() {
         UserQuery result = new UserQuery();
-        result.setId(selectedBookId);
-        result.setName(getNameText());
-        result.setAddress(getAddressText());
-        result.setEmail(getEmailText());
-        result.setNumber(getNumberText());
+        //result.setId(selectedBookId);
+        //result.setName(getNameText());
+        //result.setAddress(getAddressText());
+        //result.setEmail(getEmailText());
+        //result.setNumber(getNumberText());
         return result;
     }
 
