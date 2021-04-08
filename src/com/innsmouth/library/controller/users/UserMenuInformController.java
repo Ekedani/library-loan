@@ -3,12 +3,8 @@ package com.innsmouth.library.controller.users;
 import com.innsmouth.library.domain.facade.UserRepositoryFacade;
 import javafx.event.ActionEvent;
 import com.innsmouth.library.data.dataobject.User;
-import com.innsmouth.library.domain.repository.derby.DerbyUserRepository;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
@@ -31,6 +27,12 @@ public class UserMenuInformController implements Initializable {
     private Label userMenu_ID;
     @FXML
     private Label userMenu_Name;
+
+    public UserMenuInformController(Stage stage, long selectedUserId, UserRepositoryFacade facade) {
+        this.stage = stage;
+        this.selectedUserId = selectedUserId;
+        this.facade = facade;
+    }
 
     public void onEditUser(ActionEvent actionEvent) {
         //TODO: переход на след окно
