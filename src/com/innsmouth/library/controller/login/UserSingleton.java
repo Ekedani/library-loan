@@ -2,7 +2,7 @@ package com.innsmouth.library.controller.login;
 
 import com.innsmouth.library.data.dataobject.BaseUser;
 
-class UserSingleton {
+public class UserSingleton {
     private static UserSingleton instance = null;
 
     private BaseUser currentUser = null;
@@ -16,11 +16,11 @@ class UserSingleton {
         return instance;
     }
 
-    BaseUser getCurrentUser() {
+    public BaseUser getCurrentUser() {
         return currentUser;
     }
 
-    void setCurrentUser(BaseUser currentUser) {
+    public void setCurrentUser(BaseUser currentUser) {
         this.currentUser = currentUser;
     }
 }

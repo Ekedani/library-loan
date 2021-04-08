@@ -1,6 +1,10 @@
 package com.innsmouth.library.controller.books;
 
+import com.innsmouth.library.controller.login.UserSingleton;
+import com.innsmouth.library.data.dataobject.BaseUser;
 import com.innsmouth.library.data.dataobject.Book;
+import com.innsmouth.library.data.dataobject.LibrarianReader;
+import com.innsmouth.library.data.dataobject.UserReader;
 import com.innsmouth.library.domain.facade.BookRepositoryFacade;
 import com.innsmouth.library.domain.repository.derby.DerbyBookRepository;
 import javafx.event.ActionEvent;
@@ -16,6 +20,7 @@ import java.util.ResourceBundle;
 
 public class BookMenuInformController implements Initializable {
     public final static String LAYOUT = "/com/innsmouth/library/view/books/book_menu_inform.fxml";
+    UserSingleton userSingleton = UserSingleton.getInstance();
 
     private final Stage stage;
     private final long selectedBookId;
@@ -35,6 +40,8 @@ public class BookMenuInformController implements Initializable {
     private Label menuInform_Annotation;
     @FXML
     private Button bookMenu_backBtn;
+    @FXML
+    private Button bookMenu_editBookBtn;
 
 
     public BookMenuInformController(BookRepositoryFacade facade, Stage stage, long selectedBookId) {
@@ -46,7 +53,22 @@ public class BookMenuInformController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        checkPrivileges();
         setLabels();
+    }
+
+    private void checkPrivileges() {
+        boolean currUserIsLibrary = currUserIsLibrary();
+        if (!currUserIsLibrary) {
+            bookMenu_editBookBtn.setDisable(true);
+        } else {
+            bookMenu_editBookBtn.setDisable(false);
+        }
+    }
+
+    private boolean currUserIsLibrary() {
+        BaseUser currUser = userSingleton.getCurrentUser();
+        return currUser instanceof LibrarianReader;
     }
 
     public void setLabels(){
