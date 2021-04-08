@@ -35,9 +35,11 @@ public class UserMenuInformController implements Initializable {
     }
 
     public void onEditUser(ActionEvent actionEvent) {
+        //TODO: переход на след окно
     }
 
     public void onBackPressed(ActionEvent actionEvent) {
+        //TODO: переход в каталог
     }
 
     @Override
