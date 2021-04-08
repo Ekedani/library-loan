@@ -1,6 +1,7 @@
 package com.innsmouth.library;
 
 
+import com.innsmouth.library.controller.main.MainMenuController;
 import com.innsmouth.library.controller.users.AddUserController;
 import com.innsmouth.library.controller.users.UserCatalogController;
 import com.innsmouth.library.domain.facade.BookRepositoryFacade;
@@ -16,7 +17,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/innsmouth/library/view/users/user_catalog.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/innsmouth/library/view/main/main_menu.fxml"));
         loader.setControllerFactory(t -> createController(stage));
 
         stage.setScene(new Scene(loader.load()));
@@ -24,12 +25,8 @@ public class Main extends Application {
     }
 
 
-    private UserCatalogController createController(Stage stage) {
-        return new UserCatalogController(createFacade(), stage);
-    }
-
-    private UserRepositoryFacade createFacade() {
-        return new UserRepositoryFacade(new DerbyUserRepository());
+    private MainMenuController createController(Stage stage) {
+        return new MainMenuController(stage);
     }
 
     public static void main(String[] args) throws Exception {
