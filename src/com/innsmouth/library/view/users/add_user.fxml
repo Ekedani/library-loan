@@ -22,7 +22,7 @@
          <font>
             <Font size="16.0" />
          </font></Label>
-        <Button layoutX="104.0" layoutY="279.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="90.0" text="Add">
+        <Button fx:id="userAdd_addBtn" layoutX="104.0" layoutY="279.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="90.0" text="Add" onAction="#onAddUser">
          <font>
             <Font size="24.0" />
          </font></Button>

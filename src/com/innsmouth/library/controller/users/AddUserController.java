@@ -5,6 +5,7 @@ import com.innsmouth.library.data.dataobject.Book;
 import com.innsmouth.library.data.query.BookQuery;
 import com.innsmouth.library.data.query.UserQuery;
 import com.innsmouth.library.domain.facade.BookRepositoryFacade;
+import com.innsmouth.library.domain.facade.UserRepositoryFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,7 +22,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class AddUserController implements Initializable {
-    private final BookRepositoryFacade facade;
+    private final UserRepositoryFacade facade;
 
     @FXML
     private TextField userAdd_name;
@@ -35,8 +36,7 @@ public class AddUserController implements Initializable {
     private TextField userAdd_password;
 
 
-
-    public AddUserController(BookRepositoryFacade facade, Stage stage) {
+    public AddUserController(UserRepositoryFacade facade, Stage stage) {
         this.facade = facade;
         stage.setOnCloseRequest(e -> facade.close());
     }
@@ -63,7 +63,7 @@ public class AddUserController implements Initializable {
 
     private void addUser() {
         UserQuery query = createQuery();
-        facade.addNewBook(query);
+        facade.addUser(query);
     }
 
     private UserQuery createQuery() {
@@ -73,34 +73,28 @@ public class AddUserController implements Initializable {
         result.setNumber(getNumber());
         result.setEmail(getEmail());
         result.setPassword(getPassword());
-        result.setId();
 
         return result;
     }
 
     private String getName(){
-        String name = userAdd_name.getText();
-        return name;
+        return userAdd_name.getText();
     }
 
     private String getAddress(){
-        String address = userAdd_address.getText();
-        return address;
+        return userAdd_address.getText();
     }
 
     private long getNumber(){
-        long number = Long.parseLong(userAdd_number.getText());
-        return number;
+        return Long.parseLong(userAdd_number.getText());
     }
 
     private String getEmail(){
-        String email = userAdd_email.getText();
-        return email;
+        return userAdd_email.getText();
     }
 
     private String getPassword(){
-        String password = userAdd_password.getText();
-        return password;
+        return userAdd_password.getText();
     }
 
     private void logAddStatements() {
