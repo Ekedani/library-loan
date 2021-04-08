@@ -1,6 +1,7 @@
 package com.innsmouth.library.domain.repository.derby;
 
 import com.innsmouth.library.data.dataobject.Book;
+import com.innsmouth.library.data.dataobject.User;
 import com.innsmouth.library.data.query.UserQuery;
 import com.innsmouth.library.domain.repository.api.UserRepository;
 import org.apache.commons.dbutils.QueryRunner;
@@ -28,6 +29,30 @@ public class DerbyUserRepository implements UserRepository {
            e.printStackTrace();
        }
 
+    }
+
+    @Override
+    public boolean updateUser(UserQuery user) {
+        //todo implement
+        return false;
+    }
+
+    @Override
+    public boolean deleteUser(UserQuery user) {
+        //todo implement
+        return false;
+    }
+
+    @Override
+    public List<User> findUserByProperty(UserQuery query) {
+        //todo implement
+        return null;
+    }
+
+    @Override
+    public List<User> findAll() {
+        //todo implement
+        return null;
     }
 
     @Override
