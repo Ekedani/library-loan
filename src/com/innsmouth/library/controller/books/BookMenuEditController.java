@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -63,6 +64,12 @@ public class BookMenuEditController implements Initializable {
     private void deleteBook(){
         BookQuery query = createQuery();
         facade.deleteBook(query);
+
+        try {
+            goToCatalog();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void editBook() {
@@ -146,6 +153,19 @@ public class BookMenuEditController implements Initializable {
         deleteBook();
     }
 
+    private void goToCatalog() throws IOException {
+        Scene scene = generateCatalogScene(selectedBookId);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private Scene generateCatalogScene(long selectedBookId) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/innsmouth/library/view/books/book_catalog.fxml"));
+        loader.setControllerFactory(t -> createCatalogBookController(stage, selectedBookId));
+
+        return new Scene(loader.load());
+    }
+
     public void goBack() throws Exception {
         Scene scene = generateEditScene(selectedBookId);
         stage.setScene(scene);
@@ -161,6 +181,10 @@ public class BookMenuEditController implements Initializable {
 
     private BookMenuInformController createEditBookController(Stage stage, final long selectedId) {
         return new BookMenuInformController(createFacade(), stage, selectedId);
+    }
+
+    private BookCatalogController createCatalogBookController(Stage stage, final long selectedId) {
+        return new BookCatalogController(createFacade(), stage, selectedId);
     }
 
     private BookRepositoryFacade createFacade() {
