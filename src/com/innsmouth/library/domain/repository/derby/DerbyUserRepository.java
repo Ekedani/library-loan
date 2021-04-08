@@ -84,7 +84,7 @@ public class DerbyUserRepository implements UserRepository {
     @Override
     public List<User> findAll() {
         try {
-            return dbAccess.query(connection, "SELECT * FROM Reader", new BeanListHandler<User>(User.class));
+            return dbAccess.query(connection, "SELECT * FROM Reader", new BeanListHandler<>(User.class));
         } catch (Exception e) {
             e.printStackTrace();
         }

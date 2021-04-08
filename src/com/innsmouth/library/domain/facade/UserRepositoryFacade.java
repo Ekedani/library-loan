@@ -14,6 +14,12 @@ public class UserRepositoryFacade {
 
     public UserRepositoryFacade(UserRepository repository) {
         this.repository = repository;
+        try {
+            repository.connect();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

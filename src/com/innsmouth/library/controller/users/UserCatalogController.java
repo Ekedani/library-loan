@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -49,7 +50,18 @@ public class UserCatalogController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        configUI();
+    }
 
+    private void configUI() {
+        configTableView();
+    }
+
+    private void configTableView() {
+        col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
+        col_number.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
     }
 
     private String getName() {
@@ -95,6 +107,8 @@ public class UserCatalogController implements Initializable {
 
     private void populateTableViewWithAllUsers() {
         List<User> allUsers = facade.findAll();
+        allUsers.forEach(System.out::println);
+
         userObservableList.setAll(allUsers);
         user_table.setItems(userObservableList);
     }
