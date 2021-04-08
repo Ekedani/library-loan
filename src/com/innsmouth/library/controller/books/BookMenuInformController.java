@@ -15,9 +15,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class BookMenuInformController implements Initializable {
+    public final static String LAYOUT = "/com/innsmouth/library/view/books/book_menu_inform.fxml";
+
     private final Stage stage;
-    private final BookRepositoryFacade facade;
     private final long selectedBookId;
+    private final BookRepositoryFacade facade;
 
     @FXML
     private Label menuInform_Amount;
@@ -68,21 +70,21 @@ public class BookMenuInformController implements Initializable {
     }
 
     public void goBack() throws Exception {
-        Scene scene = generateInformBookScene();
+        Scene scene = generateEditScene();
         stage.setScene(scene);
         stage.show();
     }
 
-    private Scene generateInformBookScene() throws Exception {
+    private Scene generateEditScene() throws Exception {
         Stage stage = (Stage) bookMenu_backBtn.getScene().getWindow();
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/innsmouth/library/view/books/book_catalog.fxml"));
-        loader.setControllerFactory(t -> createInformBookController(stage));
+        loader.setControllerFactory(t -> createEditBookController(stage));
 
         return new Scene(loader.load());
     }
 
-    private BookCatalogController createInformBookController(Stage stage) {
+    private BookCatalogController createEditBookController(Stage stage) {
         return new BookCatalogController(createFacade(), stage, selectedBookId);
     }
 
@@ -102,5 +104,27 @@ public class BookMenuInformController implements Initializable {
     }
 
     public void onEditBook(ActionEvent actionEvent) {
+        try {
+            goToEdit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void goToEdit() throws Exception {
+        Scene scene = generateEditScene(selectedBookId);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private Scene generateEditScene(final long selectedId) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/innsmouth/library/view/books/book_menu_edit.fxml"));
+        loader.setControllerFactory(t -> createEditBookController(stage, selectedId));
+
+        return new Scene(loader.load());
+    }
+
+    private BookMenuEditController createEditBookController(Stage stage, final long selectedId) {
+        return new BookMenuEditController(createFacade(), stage, selectedId);
     }
 }

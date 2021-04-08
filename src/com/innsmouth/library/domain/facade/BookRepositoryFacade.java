@@ -1,23 +1,16 @@
 package com.innsmouth.library.domain.facade;
 
+import com.innsmouth.library.data.dataobject.BaseUser;
 import com.innsmouth.library.data.dataobject.Book;
 import com.innsmouth.library.data.query.BookQuery;
 import com.innsmouth.library.domain.repository.api.BookRepository;
 
 import java.util.List;
 
-public class BookRepositoryFacade {
-
-    private final BookRepository repository;
+public class BookRepositoryFacade extends BaseFacade {
 
     public BookRepositoryFacade(BookRepository repository) {
-        this.repository = repository;
-        try {
-            repository.connect();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
+        super(repository);
     }
 
     public void updateBook(BookQuery bookQuery) {
@@ -56,12 +49,4 @@ public class BookRepositoryFacade {
         return repository.findBookByProperty(query);
     }
 
-    public void close() {
-        try {
-            repository.close();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }
