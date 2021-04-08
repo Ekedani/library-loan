@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.innsmouth.library.controller.books.BookCatalogController">
+<Pane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.innsmouth.library.controller.books.BookCatalogController">
    <children>
       <TableView fx:id="book_table" layoutY="300.0" prefHeight="300.0" prefWidth="1000.0">
         <columns>
@@ -23,7 +23,7 @@
       <TextField fx:id="searchBook_genre" layoutX="149.0" layoutY="187.0" onAction="#onSearch" />
       <Button fx:id="searchBook_searchBtn" layoutX="149.0" layoutY="248.0" mnemonicParsing="false" onAction="#onSearch" text="Search" />
       <Button fx:id="searchBook_showAllBtn" layoutX="236.0" layoutY="248.0" mnemonicParsing="false" onAction="#onShowAll" text="Show All" />
-       <Button fx:id="searchBook_nextScreenBtn" layoutX="330.0" layoutY="248.0" mnemonicParsing="false" onAction="#onNextScreen" text="Next Screen" />
+       <Button fx:id="searchBook_moreBtn" layoutX="14.0" layoutY="633.0" mnemonicParsing="false" onAction="#onMoreClicked" text="More" />
 
    </children>
 </Pane>

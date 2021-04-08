@@ -1,16 +1,23 @@
 package com.innsmouth.library.controller.books;
 
+import com.innsmouth.library.data.dataobject.Book;
 import com.innsmouth.library.data.query.BookQuery;
 import com.innsmouth.library.domain.facade.BookRepositoryFacade;
+import com.innsmouth.library.domain.repository.derby.DerbyBookRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class BookMenuEditController implements Initializable {
+    private final Stage stage;
+    private final long selectedBookId;
     private final BookRepositoryFacade facade;
 
     @FXML
@@ -26,12 +33,26 @@ public class BookMenuEditController implements Initializable {
     @FXML
     private TextArea bookMenu_annotation;
 
-    public BookMenuEditController(BookRepositoryFacade facade) {
+    public BookMenuEditController(BookRepositoryFacade facade, Stage stage, long selectedBookId) {
         this.facade = facade;
+        this.selectedBookId = selectedBookId;
+        this.stage = stage;
+        stage.setOnCloseRequest(t -> facade.close());
     }
 
     private void configUI() {
         configIntTextField();
+        setBookInfo();
+    }
+
+    private void setBookInfo() {
+        Book selectedBook = facade.selectBookByID(selectedBookId);
+        bookMenu_author.setText(selectedBook.getAuthor());
+        bookMenu_genre.setText(selectedBook.getGenre());
+        bookMenu_year.setText(String.valueOf(selectedBook.getPublishYear()));
+        bookMenu_title.setText(selectedBook.getTitle());
+        bookMenu_amount.setText(String.valueOf(selectedBook.getCopiesPresent()));
+        bookMenu_annotation.setText(selectedBook.getAnnotation());
     }
 
     private void configIntTextField() {
@@ -49,11 +70,9 @@ public class BookMenuEditController implements Initializable {
         facade.updateBook(query);
     }
 
-
-
     private BookQuery createQuery() {
         BookQuery result = new BookQuery();
-        result.setBookID(101);
+        result.setBookID(selectedBookId);
         result.setAuthor(getAuthorText());
         result.setTitle(getTitleText());
         result.setPublishYear(getYearText());
@@ -115,12 +134,38 @@ public class BookMenuEditController implements Initializable {
     }
 
     public void onBack(ActionEvent actionEvent) {
-
+        try {
+            goBack();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void onDelete(ActionEvent actionEvent) {
         logAddStatements();
         deleteBook();
     }
+
+    public void goBack() throws Exception {
+        Scene scene = generateEditScene(selectedBookId);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private Scene generateEditScene(final long selectedId) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/innsmouth/library/view/books/book_menu_inform.fxml"));
+        loader.setControllerFactory(t -> createEditBookController(stage, selectedId));
+
+        return new Scene(loader.load());
+    }
+
+    private BookMenuInformController createEditBookController(Stage stage, final long selectedId) {
+        return new BookMenuInformController(createFacade(), stage, selectedId);
+    }
+
+    private BookRepositoryFacade createFacade() {
+        return new BookRepositoryFacade(new DerbyBookRepository());
+    }
+
 }
 

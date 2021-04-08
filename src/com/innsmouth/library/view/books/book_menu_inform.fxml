@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="297.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.innsmouth.library.controller.books.BookMenuInformController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="297.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.innsmouth.library.controller.books.BookMenuInformController">
     <Separator layoutX="14.0" layoutY="43.0" prefHeight="2.0" prefWidth="271.0" />
     <Separator layoutX="14.0" layoutY="195.0" prefHeight="2.0" prefWidth="271.0" />
 
@@ -14,11 +14,11 @@
     <Label layoutX="14.0" layoutY="149.0" text="Amount" />
     <Label layoutX="16.0" layoutY="203.0" text="Annotation" />
 
-    <Button fx:id="bookMenu_editBtn" layoutX="236.0" layoutY="385.0" mnemonicParsing="false" onAction="#onEditBook" prefHeight="25.0" prefWidth="43.0" text="Edit" />
-    <Button fx:id="bookMenu_orderBook" layoutX="182.0" layoutY="385.0" mnemonicParsing="false" onAction="#onOrderBook" text="Order" />
-    <Button fx:id="bookMenu_addBtn11" layoutX="22.0" layoutY="385.0" mnemonicParsing="false" onAction="#onAddBook" text="Back" />
+    <Button fx:id="bookMenu_editBookBtn" layoutX="236.0" layoutY="385.0" mnemonicParsing="false" onAction="#onEditBook" prefHeight="25.0" prefWidth="43.0" text="Edit" />
+    <Button fx:id="bookMenu_orderBookBtn" layoutX="182.0" layoutY="385.0" mnemonicParsing="false" onAction="#onOrderBook" text="Order" />
+    <Button fx:id="bookMenu_backBtn" layoutX="22.0" layoutY="385.0" mnemonicParsing="false" onAction="#onBackPressed" text="Back" />
     <Label fx:id="menuInform_Annotation" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="19.0" layoutY="228.0" prefHeight="144.0" prefWidth="259.0" text="Label" textAlignment="JUSTIFY" />
-    <Label fx:id="menuInform_Ammount" layoutX="75.0" layoutY="149.0" prefHeight="17.0" prefWidth="149.0" text="AMMOUNT" />
+    <Label fx:id="menuInform_Amount" layoutX="75.0" layoutY="149.0" prefHeight="17.0" prefWidth="149.0" text="AMOUNT" />
     <Label fx:id="menuInform_Year" layoutX="75.0" layoutY="116.0" prefHeight="17.0" prefWidth="149.0" text="YEAR" />
     <Label fx:id="menuInform_Genre" layoutX="75.0" layoutY="85.0" prefHeight="17.0" prefWidth="149.0" text="GENRE" />
     <Label fx:id="menuInform_Author" layoutX="75.0" layoutY="55.0" prefHeight="17.0" prefWidth="149.0" text="AUTHOR" />

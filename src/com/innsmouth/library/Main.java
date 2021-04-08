@@ -17,6 +17,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/innsmouth/library/view/login/login.fxml"));
+
         loader.setControllerFactory(t -> createController(stage));
 
         stage.setScene(new Scene(loader.load()));
@@ -25,6 +26,7 @@ public class Main extends Application {
 
     private LoginController createController(Stage stage) {
         return new LoginController(createLibrary(), stage);
+
     }
 
     private LoginFacade createLibrary() {
