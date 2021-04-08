@@ -19,6 +19,6 @@
     <TextField fx:id="userMenu_PhoneNumber" layoutX="161.0" layoutY="149.0" prefHeight="17.0" prefWidth="193.0" text="PHONENUMBER" />
     <TextField fx:id="userMenu_Email" layoutX="163.0" layoutY="116.0" prefHeight="17.0" prefWidth="193.0" text="EMAIL" />
     <TextField fx:id="userMenu_Address" layoutX="163.0" layoutY="85.0" prefHeight="17.0" prefWidth="193.0" text="ADDRESS" />
-    <TextField fx:id="userMenu_ID" layoutX="163.0" layoutY="55.0" prefHeight="17.0" prefWidth="193.0" text="ID" />
+    <Label fx:id="userMenu_ID" layoutX="163.0" layoutY="55.0" prefHeight="17.0" prefWidth="193.0" text="ID" />
     <TextField fx:id="userMenu_Name" layoutX="162.0" layoutY="17.0" prefHeight="17.0" prefWidth="193.0" text="NAME" />
 </Pane>

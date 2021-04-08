@@ -48,6 +48,7 @@ public class UserQuery {
     }
 
 
+
     private String address;
     private long number;
     private String email;
@@ -55,4 +56,7 @@ public class UserQuery {
     private long id;
 
 
+    public void setId(long id) {
+        this.id = id;
+    }
 }
