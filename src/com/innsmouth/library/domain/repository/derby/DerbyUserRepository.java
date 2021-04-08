@@ -1,8 +1,6 @@
 package com.innsmouth.library.domain.repository.derby;
 
-import com.innsmouth.library.data.dataobject.Book;
 import com.innsmouth.library.data.dataobject.User;
-import com.innsmouth.library.data.query.BookQuery;
 import com.innsmouth.library.data.query.UserQuery;
 import com.innsmouth.library.domain.repository.api.UserRepository;
 import org.apache.commons.dbutils.QueryRunner;
@@ -43,7 +41,7 @@ public class DerbyUserRepository implements UserRepository {
     @Override
     public boolean updateUser(UserQuery user) {
         try {
-            dbAccess.update(connection, "UPDATE User SET name=?, address=?, phonenumber=?, email=?, password=? WHERE READERID=?",
+            dbAccess.update(connection, "UPDATE READER SET name=?, address=?, phonenumber=?, email=?, password=? WHERE READERID=?",
                     user.getName(), user.getAddress(), user.getNumber(), user.getEmail(), user.getPassword(), user.getId());
             return true;
         } catch (Exception e) {
