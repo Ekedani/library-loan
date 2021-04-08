@@ -43,4 +43,12 @@ public class UserRepositoryFacade {
             e.printStackTrace();
         }
     }
+
+    public void updateUser(UserQuery query){
+        repository.updateUser(query);
+    }
+
+    public void deleteUser(long selectedUserId) {
+        repository.deleteUser(selectedUserId);
+    }
 }

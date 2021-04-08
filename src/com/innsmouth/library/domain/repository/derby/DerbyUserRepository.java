@@ -41,8 +41,8 @@ public class DerbyUserRepository implements UserRepository {
     @Override
     public boolean updateUser(UserQuery user) {
         try {
-            dbAccess.update(connection, "UPDATE READER SET name=?, address=?, phonenumber=?, email=?, password=? WHERE READERID=?",
-                    user.getName(), user.getAddress(), user.getNumber(), user.getEmail(), user.getPassword(), user.getId());
+            dbAccess.update(connection, "UPDATE READER SET name=?, address=?, phonenumber=?, email=? WHERE READERID=?",
+                    user.getName(), user.getAddress(), user.getNumber(), user.getEmail(), user.getId());
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -52,9 +52,9 @@ public class DerbyUserRepository implements UserRepository {
     }
 
     @Override
-    public boolean deleteUser(UserQuery user) {
+    public boolean deleteUser(long id) {
         try {
-            dbAccess.update(connection, "DELETE FROM reader WHERE READERID=?", user.getId());
+            dbAccess.update(connection, "DELETE FROM reader WHERE READERID=?", id);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,13 +1,18 @@
 package com.innsmouth.library.controller.users;
 
+import com.innsmouth.library.controller.login.UserSingleton;
+import com.innsmouth.library.data.dataobject.Book;
 import com.innsmouth.library.data.dataobject.User;
 import com.innsmouth.library.data.query.UserQuery;
 import com.innsmouth.library.domain.facade.UserRepositoryFacade;
+import com.innsmouth.library.domain.repository.derby.DerbyUserRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -19,6 +24,22 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class UserCatalogController implements Initializable {
+    public final static String LAYOUT = "/com/innsmouth/library/view/users/user_catalog.fxml";
+    UserSingleton userSingleton = UserSingleton.getInstance();
+
+    public static UserCatalogController createInstance(Stage stage) {
+        return new UserCatalogController(sCreateFacade(), stage);
+    }
+
+    private static UserRepositoryFacade sCreateFacade() {
+        return new UserRepositoryFacade(new DerbyUserRepository());
+    }
+
+    private final UserRepositoryFacade facade;
+    private final Stage stage;
+    private final long NOTHING_SELECTED = -1;
+
+    private long selectedId = NOTHING_SELECTED;
 
     @FXML
     private TextField searchUser_name;
@@ -40,12 +61,12 @@ public class UserCatalogController implements Initializable {
     @FXML
     private TableColumn<User, Long> col_number;
 
-    private final UserRepositoryFacade facade;
 
     private final ObservableList<User> userObservableList = FXCollections.observableArrayList();
 
     public UserCatalogController(UserRepositoryFacade facade, Stage stage) {
         this.facade = facade;
+        this.stage = stage;
         stage.setOnCloseRequest(e -> facade.close());
     }
 
@@ -132,6 +153,49 @@ public class UserCatalogController implements Initializable {
 
     @FXML
     private void onMorePressed(ActionEvent actionEvent) {
+        updateSelectedId();
 
+        try {
+            goToUsersInfo();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void updateSelectedId() {
+
+    }
+
+    private long getSelectedId() {
+        User selectedUser = user_table.getSelectionModel().getSelectedItem();
+        logSelectedBook(selectedUser);
+
+        if (selectedUser == null) return NOTHING_SELECTED;
+
+        return selectedUser.getReaderId();
+    }
+
+    private void logSelectedBook(User selectedUser) {
+            System.out.println("selectedUser is ");
+            System.out.println(selectedUser);
+
+    }
+
+    public void goToUsersInfo() throws Exception {
+        final long selectedId = getSelectedId();
+        if (selectedId == NOTHING_SELECTED) {
+            return;
+        }
+
+        Scene scene = generateUsersInfoScene(selectedId);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private Scene generateUsersInfoScene(long selectedId) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(UserMenuInformController.LAYOUT));
+        loader.setControllerFactory(t -> UserMenuInformController.createInstance(stage,selectedId));
+
+        return new Scene(loader.load());
     }
 }

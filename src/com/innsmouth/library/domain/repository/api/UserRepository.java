@@ -9,7 +9,7 @@ import java.util.List;
 public interface UserRepository extends Repository {
     void insertUser(UserQuery user);
     boolean updateUser(UserQuery user);
-    boolean deleteUser(UserQuery user);
+    boolean deleteUser(long id);
     User selectUserById(long id);
 
 
