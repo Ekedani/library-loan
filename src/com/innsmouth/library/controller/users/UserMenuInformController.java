@@ -33,9 +33,11 @@ public class UserMenuInformController implements Initializable {
     private Label userMenu_Name;
 
     public void onEditUser(ActionEvent actionEvent) {
+        //TODO: переход на след окно
     }
 
     public void onBackPressed(ActionEvent actionEvent) {
+        //TODO: переход в каталог
     }
 
     @Override
@@ -46,10 +48,10 @@ public class UserMenuInformController implements Initializable {
     private void setLabels() {
         User result;
         result = facade.selectUserByID(selectedUserId);
-        userMenu_PhoneNumber.setText(String.valueOf(result.getNumber()));
+        userMenu_PhoneNumber.setText(String.valueOf(result.getPhoneNumber()));
         userMenu_Email.setText(result.getEmail());
         userMenu_Address.setText(result.getAddress());
-        userMenu_ID.setText(String.valueOf(result.getId()));
+        userMenu_ID.setText(String.valueOf(result.getReaderId()));
         userMenu_Name.setText(result.getName());
     }
 }
