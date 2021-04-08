@@ -1,11 +1,14 @@
 package com.innsmouth.library.controller.login;
 
 import com.innsmouth.library.controller.books.BookCatalogController;
+import com.innsmouth.library.controller.main.MainMenuController;
 import com.innsmouth.library.data.dataobject.LibrarianReader;
 import com.innsmouth.library.data.dataobject.UserReader;
 import com.innsmouth.library.domain.facade.BookRepositoryFacade;
 import com.innsmouth.library.domain.facade.LoginFacade;
 import com.innsmouth.library.domain.repository.derby.DerbyBookRepository;
+import com.innsmouth.library.domain.repository.derby.DerbyLoginRepository;
+import com.sun.javaws.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +21,16 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
+    public static final String LAYOUT = "/com/innsmouth/library/view/login/login.fxml";
+
+    public static LoginController createInstance(Stage stage) {
+        return new LoginController(sCreateFacade(), stage);
+    }
+
+    private static LoginFacade sCreateFacade() {
+        return new LoginFacade(new DerbyLoginRepository());
+    }
+
     private final Stage stage;
     private final LoginFacade facade;
 
@@ -91,18 +104,10 @@ public class LoginController implements Initializable {
     }
 
     private Scene generateScene() throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/innsmouth/library/view/books/book_catalog.fxml"));
-        loader.setControllerFactory(t -> createController(stage));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(MainMenuController.LAYOUT));
+        loader.setControllerFactory(t -> MainMenuController.createInstance(stage));
 
         return new Scene(loader.load());
-    }
-
-    private BookCatalogController createController(Stage stage) {
-        return new BookCatalogController(createFacade(), stage);
-    }
-
-    private BookRepositoryFacade createFacade() {
-        return new BookRepositoryFacade(new DerbyBookRepository());
     }
 
     private boolean validateCredentials() {

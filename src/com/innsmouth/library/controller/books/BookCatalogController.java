@@ -23,6 +23,16 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class BookCatalogController implements Initializable {
+    public static final String LAYOUT = "/com/innsmouth/library/view/books/book_catalog.fxml";
+
+    public static BookCatalogController createInstance(Stage stage) {
+        return new BookCatalogController(sCreateFacade(), stage);
+    }
+
+    private static BookRepositoryFacade sCreateFacade() {
+        return new BookRepositoryFacade(new DerbyBookRepository());
+    }
+
     private final Stage stage;
     private final long selectedBookId;
     private static final long NOTHING_SELECTED = -1;
