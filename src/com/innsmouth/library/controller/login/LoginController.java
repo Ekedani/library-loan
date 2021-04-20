@@ -77,12 +77,12 @@ public class LoginController implements Initializable {
             onInvalidCredentials();
         }
 
-        onLoginFinish();
     }
 
     private void onReaderCredentialsValid() {
         UserReader reader = new UserReader(getID());
         userSingleton.setCurrentUser(reader);
+        onLoginFinish();
     }
 
     private void onLoginFinish() {
