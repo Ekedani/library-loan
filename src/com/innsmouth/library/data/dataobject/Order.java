@@ -1,6 +1,7 @@
 package com.innsmouth.library.data.dataobject;
 
 public class Order {
+    private long orderId;
     private long readerId;
     private String book;
     private String take_date;
@@ -36,5 +37,13 @@ public class Order {
 
     public void setReturn_date(String return_date) {
         this.return_date = return_date;
+    }
+
+    public long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(long orderId) {
+        this.orderId = orderId;
     }
 }
