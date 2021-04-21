@@ -1,2 +1,4 @@
-package com.innsmouth.library.controller.books.orders;public class OrderCatalogController {
+package com.innsmouth.library.controller.books.orders;
+
+public class OrderCatalogController {
 }
