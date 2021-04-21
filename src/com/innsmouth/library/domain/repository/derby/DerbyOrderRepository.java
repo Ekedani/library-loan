@@ -24,7 +24,6 @@ public class DerbyOrderRepository implements OrderRepository {
     private static final String TAKE_DATE_COL = "Take Date";
     private static final String RETURN_DATE_COL = "Return Date";
 
-    //TODO: Путь к ДБ
     private static final String DATABASE_PATH = "//localhost:1527/library";
     private static final List<Order> EMPTY = new ArrayList<>();
 
@@ -87,4 +86,25 @@ public class DerbyOrderRepository implements OrderRepository {
         return false;
     }
 
+    @Override
+    public Order selectOrderById(long ID){
+        try {
+            List<Order> orderList = dbAccess.query(connection, "select * from orders where ORDERID=?", new BeanListHandler<>(Order.class), ID);
+            return orderList.get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new Order();
+    }
+
+    @Override
+    public List<Order> findAll() {
+        try {
+            return dbAccess.query(connection, "SELECT * FROM Orders", new BeanListHandler<Order>(Order.class));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return EMPTY;
+    }
 }
