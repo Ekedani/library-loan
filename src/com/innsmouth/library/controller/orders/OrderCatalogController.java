@@ -1,6 +1,7 @@
 package com.innsmouth.library.controller.orders;
 
 import com.innsmouth.library.controller.login.UserSingleton;
+import com.innsmouth.library.controller.users.UserMenuInformController;
 import com.innsmouth.library.data.dataobject.Order;
 import com.innsmouth.library.domain.facade.OrdersFacade;
 import com.innsmouth.library.domain.repository.derby.DerbyOrderRepository;
@@ -8,7 +9,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
@@ -20,6 +23,15 @@ import java.util.ResourceBundle;
 public class OrderCatalogController implements Initializable {
     public final static String LAYOUT = "/com/innsmouth/library/view/orders/order_catalog.fxml";
     UserSingleton userSingleton = UserSingleton.getInstance();
+
+    public static OrderCatalogController createInstance(Stage stage) {
+        return new OrderCatalogController(sCreateFacade(), stage);
+    }
+
+    private static OrdersFacade sCreateFacade() {
+        return new OrdersFacade(new DerbyOrderRepository());
+    }
+
     @FXML
     private TextField searchOrder_userId;
     @FXML
@@ -41,14 +53,6 @@ public class OrderCatalogController implements Initializable {
     private TableColumn<Order, String> col_returnDate;
     @FXML
     private TableColumn<Order, String> col_returned;
-
-    public static OrderCatalogController createInstance(Stage stage) {
-        return new OrderCatalogController(sCreateFacade(), stage);
-    }
-
-    private static OrdersFacade sCreateFacade() {
-        return new OrdersFacade(new DerbyOrderRepository());
-    }
 
     private final OrdersFacade facade;
     private final Stage stage;
@@ -126,18 +130,13 @@ public class OrderCatalogController implements Initializable {
 
     @FXML
     private void onMorePressed(ActionEvent actionEvent) {
-        updateSelectedId();
-
         try {
-            //goToUsersInfo();
+            goToOrdersInfo();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void updateSelectedId() {
-
-    }
 
     private long getSelectedId() {
         Order selectedUser = order_table.getSelectionModel().getSelectedItem();
@@ -145,7 +144,7 @@ public class OrderCatalogController implements Initializable {
 
         if (selectedUser == null) return NOTHING_SELECTED;
 
-        return selectedUser.getOrdererId();
+        return selectedUser.getUniqueId();
     }
 
     private void logSelectedOrder(Order selectedUser) {
@@ -154,15 +153,22 @@ public class OrderCatalogController implements Initializable {
 
     }
 
-    public void goToUsersInfo() throws Exception {
-        /*final long selectedId = getSelectedId();
+    public void goToOrdersInfo() throws Exception {
+        final long selectedId = getSelectedId();
         if (selectedId == NOTHING_SELECTED) {
             return;
         }
 
-        Scene scene = generateUsersInfoScene(selectedId);
+        Scene scene = generateOrdersInfoScene(selectedId);
         stage.setScene(scene);
-        stage.show();*/
+        stage.show();
+    }
+
+    private Scene generateOrdersInfoScene(long selectedId) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(OrderInformController.LAYOUT));
+        loader.setControllerFactory(t -> OrderInformController.createInstance(stage,selectedId));
+
+        return new Scene(loader.load());
     }
 
    /* private Scene generateUsersInfoScene(long selectedId) throws Exception {

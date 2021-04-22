@@ -15,4 +15,6 @@ public interface OrderRepository extends Repository {
    long insertOrder(Order order);
 
     List<Order> search(Order order);
+
+    void update(Order order);
 }

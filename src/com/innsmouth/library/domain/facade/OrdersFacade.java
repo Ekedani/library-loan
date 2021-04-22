@@ -43,4 +43,11 @@ public class OrdersFacade{
     public List<Order> findAll() {
         return repository.findAll();
     }
+
+    public void returnOrder(long selectedOrderId) {
+        Order query = new Order();
+        query.setUniqueId(selectedOrderId);
+        query.setReturned("true");
+        repository.update(query);
+    }
 }

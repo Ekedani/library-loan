@@ -61,8 +61,6 @@ public class DerbyUserRepository implements UserRepository {
         return false;
     }
 
-
-
     @Override
     public List<User> findAll() {
         try {

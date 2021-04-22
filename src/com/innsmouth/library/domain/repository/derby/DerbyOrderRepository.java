@@ -1,5 +1,6 @@
 package com.innsmouth.library.domain.repository.derby;
 
+import com.innsmouth.library.data.dataobject.User;
 import com.innsmouth.library.domain.repository.api.OrderRepository;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 import com.innsmouth.library.data.dataobject.Order;
@@ -77,6 +78,18 @@ public class DerbyOrderRepository implements OrderRepository {
         }
 
         return null;
+    }
+
+    @Override
+    public void update(Order order) {
+        try {
+            dbAccess.update(connection, "UPDATE ORDERS SET returned =? WHERE UNIQUEID=?",
+                    order.getReturned(), order.getUniqueId());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     private void generateClauses(ArrayList<String> whereClauses, ArrayList<String> valueClauses, Order query) {
