@@ -77,7 +77,6 @@ public class BookCatalogController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         configUI();
-        populateTableViewWithAllBooks();
     }
 
     private void configUI() {
