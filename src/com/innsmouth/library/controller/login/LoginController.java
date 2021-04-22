@@ -15,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -37,9 +38,9 @@ public class LoginController implements Initializable {
     UserSingleton userSingleton = UserSingleton.getInstance();
 
     @FXML
-    private Label login_email;
+    private TextField login_email;
     @FXML
-    private Label login_password;
+    private TextField login_password;
 
     public LoginController(LoginFacade facade,Stage stage) {
         this.stage = stage;

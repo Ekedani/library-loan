@@ -23,7 +23,7 @@ public class DerbyLoginRepository implements LoginRepository {
         try {
             connection = DriverManager.getConnection("jdbc:derby:" + DATABASE_PATH);
 
-            List<User> usersList = dbAccess.query("SELECT * FROM READER WHERE EMAIL=?, PASSWORD=?", new BeanListHandler<>(User.class), email, password);
+            List<User> usersList = dbAccess.query(connection,"SELECT * FROM READER WHERE EMAIL=? AND PASSWORD=?", new BeanListHandler<>(User.class), email, password);
             if(usersList.isEmpty()) return false;
             else return true;
         } catch (Exception e) {
