@@ -161,7 +161,7 @@ public class DerbyOrderRepository implements OrderRepository {
     @Override
     public List<Order> findAll() {
         try {
-            return dbAccess.query(connection, "SELECT * FROM Orders", new BeanListHandler<Order>(Order.class));
+            return dbAccess.query(connection, "SELECT * FROM Orders", new BeanListHandler<>(Order.class));
         } catch (Exception e) {
             e.printStackTrace();
         }

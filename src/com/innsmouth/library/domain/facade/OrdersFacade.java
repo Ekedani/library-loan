@@ -41,6 +41,6 @@ public class OrdersFacade{
     }
 
     public List<Order> findAll() {
-        return null;
+        return repository.findAll();
     }
 }
