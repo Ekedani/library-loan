@@ -3,6 +3,8 @@ package com.innsmouth.library.domain.facade;
 import com.innsmouth.library.domain.repository.api.OrderRepository;
 import com.innsmouth.library.data.dataobject.Order;
 
+import java.util.List;
+
 public class OrdersFacade{
 
     private final OrderRepository repository;
@@ -21,7 +23,9 @@ public class OrdersFacade{
         repository.insertOrder(order);
     }
 
-    public Order selectUserByID(long ID){return repository.selectOrderById(ID);}
+    public Order selectOrderByID(long ID){return repository.selectOrderById(ID);}
+
+    public List<Order> search(Order order){return repository.search(order);}
 
     public void deleteOrder(Order order) {
         repository.deleteOrder(order);
@@ -36,4 +40,7 @@ public class OrdersFacade{
         }
     }
 
+    public List<Order> findAll() {
+        return null;
+    }
 }

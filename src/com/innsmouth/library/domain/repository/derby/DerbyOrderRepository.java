@@ -8,8 +8,10 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class DerbyOrderRepository implements OrderRepository {
     private static final String ID_COL = "Reader ID";
@@ -26,17 +28,22 @@ public class DerbyOrderRepository implements OrderRepository {
 
     @Override
     public void setup() throws Exception {
-
+        //todo
     }
 
     @Override
     public void connect() throws Exception {
-
+        connection = DriverManager.getConnection("jdbc:derby:" + DATABASE_PATH/* + ";create=true"*/);
     }
 
     @Override
     public void close() throws Exception {
-
+        connection.close();
+        try {
+            DriverManager.getConnection("jdbc:derby:" + DATABASE_PATH + ";shutdown=true");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -53,6 +60,67 @@ public class DerbyOrderRepository implements OrderRepository {
         return -1L;
     }
 
+    @Override
+    public List<Order> search(Order query) {
+        ArrayList<String> whereClauses = new ArrayList<>();
+        ArrayList<String> valueClauses = new ArrayList<>();
+
+        generateClauses(whereClauses, valueClauses, query);
+
+        String sqlQuery = createSqlLikeQuery(whereClauses);
+        System.out.println(sqlQuery);
+
+        try {
+            return dbAccess.query(connection, sqlQuery, new BeanListHandler<>(Order.class), valueClauses.stream().toArray(String[]::new));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    private void generateClauses(ArrayList<String> whereClauses, ArrayList<String> valueClauses, Order query) {
+        addEqualsClause(whereClauses, valueClauses, query.getBookId(), "bookid");
+        addEqualsClause(whereClauses, valueClauses, String.valueOf(query.getOrdererId()), "ordererid");
+        addEqualsClause(whereClauses, valueClauses, query.getReturned(), "returned");
+    }
+
+    private String createSqlLikeQuery(ArrayList<String> whereClauses) {
+        StringBuilder sqlQuery = new StringBuilder();
+        sqlQuery.append("SELECT * FROM ORDERS WHERE");
+
+        AtomicReference<Boolean> isFirst = new AtomicReference<>(true);
+        whereClauses.forEach(clause -> {
+            appendClauses(isFirst.get(), sqlQuery, clause);
+            isFirst.set(false);
+        });
+
+        return sqlQuery.toString();
+    }
+
+    private void appendClauses(Boolean isFirst, StringBuilder sqlQuery, String likeClause) {
+        String separator;
+        if (isFirst) {
+            separator = " ";
+        } else {
+            separator = " AND ";
+        }
+        sqlQuery.append(separator);
+
+        sqlQuery.append(likeClause);
+    }
+
+    private void addEqualsClause(ArrayList<String> whereClauses, ArrayList<String> valueClause,
+                                 String textToFind, String column) {
+        if (textToFind == null || textToFind.isEmpty()) return;
+
+        String whereText = column + " = ?";
+        String valueText = textToFind;
+
+        whereClauses.add(whereText);
+        valueClause.add(valueText);
+    }
+
     private String generateAddQuery() {
         return "INSERT INTO ORDERS (ID, book, take_date, return_date) VALUES (?, ?, ?, ?)";
     }
@@ -60,10 +128,10 @@ public class DerbyOrderRepository implements OrderRepository {
     private String[] generateAddParams(Order order) {
         final int paramsNum = 4;
         String[] result = new String[paramsNum];
-        result[0] = String.valueOf(order.getReaderId());
+        result[0] = String.valueOf(order.getOrdererId());
         result[1] = order.getBookId();
-        result[2] = order.getTake_date();
-        result[3] = order.getReturn_date();
+        result[2] = order.getTookDate();
+        result[3] = order.getReturnDate();
 
         return result;
     }
@@ -71,7 +139,7 @@ public class DerbyOrderRepository implements OrderRepository {
     @Override
     public boolean deleteOrder(Order order) {
         try {
-            dbAccess.update(connection, "DELETE FROM ORDERS WHERE ORDERID=?", order.getOrderId());
+            dbAccess.update(connection, "DELETE FROM ORDERS WHERE UNIQUEID =?", order.getUniqueId());
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -80,9 +148,9 @@ public class DerbyOrderRepository implements OrderRepository {
     }
 
     @Override
-    public Order selectOrderById(long ID){
+    public Order selectOrderById(long ID) {
         try {
-            List<Order> orderList = dbAccess.query(connection, "select * from orders where ORDERID=?", new BeanListHandler<>(Order.class), ID);
+            List<Order> orderList = dbAccess.query(connection, "select * from orders where UNIQUEID=?", new BeanListHandler<>(Order.class), ID);
             return orderList.get(0);
         } catch (Exception e) {
             e.printStackTrace();

@@ -61,24 +61,7 @@ public class DerbyUserRepository implements UserRepository {
         return false;
     }
 
-    @Override
-    public List<User> findUserByProperty(User query) {
-        ArrayList<String> whereClauses = new ArrayList<>();
-        ArrayList<String> valueClauses = new ArrayList<>();
 
-        generateClauses(whereClauses, valueClauses, query);
-
-        String sqlQuery = createSqlLikeQuery(whereClauses);
-        System.out.println(sqlQuery);
-
-        try {
-            return dbAccess.query(connection, sqlQuery, new BeanListHandler<>(User.class), valueClauses.stream().toArray(String[]::new));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
 
     @Override
     public List<User> findAll() {
@@ -118,6 +101,25 @@ public class DerbyUserRepository implements UserRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<User> findUserByProperty(User query) {
+        ArrayList<String> whereClauses = new ArrayList<>();
+        ArrayList<String> valueClauses = new ArrayList<>();
+
+        generateClauses(whereClauses, valueClauses, query);
+
+        String sqlQuery = createSqlLikeQuery(whereClauses);
+        System.out.println(sqlQuery);
+
+        try {
+            return dbAccess.query(connection, sqlQuery, new BeanListHandler<>(User.class), valueClauses.stream().toArray(String[]::new));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     private String createSqlLikeQuery(ArrayList<String> whereClauses) {

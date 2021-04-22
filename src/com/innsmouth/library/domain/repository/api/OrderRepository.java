@@ -13,4 +13,6 @@ public interface OrderRepository extends Repository {
    boolean deleteOrder(Order order);
 
    long insertOrder(Order order);
+
+    List<Order> search(Order order);
 }

@@ -1,15 +1,15 @@
 package com.innsmouth.library.data.dataobject;
 
 public class Order {
-    private long   orderId;
-    private long   readerId;
+    private long uniqueId;
+    private long   ordererId;
     private String bookId;
-    private String take_date;
-    private String return_date;
+    private String tookDate;
+    private String returnDate;
     private String returned;
 
-    public long getReaderId() {
-        return readerId;
+    public long getOrdererId() {
+        return ordererId;
     }
 
     public String getBookId() {
@@ -20,32 +20,44 @@ public class Order {
         this.bookId = bookId;
     }
 
-    public void setReaderId(long readerId) {
-        this.readerId = readerId;
+    public void setOrdererId(long ordererId) {
+        this.ordererId = ordererId;
     }
 
-    public String getTake_date() {
-        return take_date;
+    public String getTookDate() {
+        return tookDate;
     }
 
-    public void setTake_date(String take_date) {
-        this.take_date = take_date;
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + uniqueId +
+                ", readerId=" + ordererId +
+                ", bookId='" + bookId + '\'' +
+                ", take_date='" + tookDate + '\'' +
+                ", return_date='" + returnDate + '\'' +
+                ", returned='" + returned + '\'' +
+                '}';
     }
 
-    public String getReturn_date() {
-        return return_date;
+    public void setTookDate(String tookDate) {
+        this.tookDate = tookDate;
     }
 
-    public void setReturn_date(String return_date) {
-        this.return_date = return_date;
+    public String getReturnDate() {
+        return returnDate;
     }
 
-    public long getOrderId() {
-        return orderId;
+    public void setReturnDate(String returnDate) {
+        this.returnDate = returnDate;
     }
 
-    public void setOrderId(long orderId) {
-        this.orderId = orderId;
+    public long getUniqueId() {
+        return uniqueId;
+    }
+
+    public void setUniqueId(long uniqueId) {
+        this.uniqueId = uniqueId;
     }
 
     public String getReturned() {
