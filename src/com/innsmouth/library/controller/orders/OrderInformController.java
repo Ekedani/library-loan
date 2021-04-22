@@ -83,13 +83,6 @@ public class OrderInformController implements Initializable {
         return new Scene(loader.load());
     }
 
-
-    public void goToUsersEdit() throws Exception {
-        Scene scene = generateUserEditScene(selectedOrderId);
-        stage.setScene(scene);
-        stage.show();
-    }
-
     private Scene generateUserEditScene(long selectedId) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(UserMenuEditController.LAYOUT));
         loader.setControllerFactory(t -> UserMenuEditController.createInstance(stage, selectedId));
@@ -113,6 +106,10 @@ public class OrderInformController implements Initializable {
         Order order = new Order();
         order.setUniqueId(selectedOrderId);
         facade.deleteOrder(order);
-        goToCatalog();
+        try {
+            goToCatalog();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

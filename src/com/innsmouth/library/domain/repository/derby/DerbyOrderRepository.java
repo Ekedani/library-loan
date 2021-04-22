@@ -29,7 +29,12 @@ public class DerbyOrderRepository implements OrderRepository {
 
     @Override
     public void setup() throws Exception {
-        //todo
+        connection = DriverManager.getConnection("jdbc:derby:" + DATABASE_PATH);
+
+        dbAccess.update(connection, "CREATE TABLE Orders ("
+                + "uniqueID BIGINT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),"
+                + "ordererid BIGINT, bookid BIGINT, tookDate VARCHAR(30), returndate VARCHAR(30), returned BOOLEAN"
+                + ")");
     }
 
     @Override
