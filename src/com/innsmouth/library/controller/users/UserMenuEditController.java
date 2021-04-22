@@ -1,5 +1,6 @@
 package com.innsmouth.library.controller.users;
 
+import com.innsmouth.library.controller.books.IntTextFormatter;
 import com.innsmouth.library.data.dataobject.User;
 import com.innsmouth.library.domain.facade.UserRepositoryFacade;
 import javafx.event.ActionEvent;
@@ -93,6 +94,11 @@ public class UserMenuEditController implements Initializable {
 
     public void onConfirm(ActionEvent actionEvent) {
         editUser();
+        try {
+            goToUserInfo();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void editUser() {
@@ -103,7 +109,11 @@ public class UserMenuEditController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setUserInfo();
-        //configUI();
+        configUI();
+    }
+
+    private void configUI() {
+        userMenu_PhoneNumber.setTextFormatter(new IntTextFormatter());
     }
 
     private void setUserInfo() {

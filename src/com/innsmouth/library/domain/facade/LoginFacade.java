@@ -9,7 +9,7 @@ public class LoginFacade {
         this.repository = repository;
     }
 
-    public boolean credentialsValid(String email, String password){
+    public long credentialsValid(String email, String password){
         return repository.validateCredentials(email, password);
     }
 

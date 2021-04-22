@@ -1,16 +1,22 @@
 package com.innsmouth.library.controller.main;
 
 import com.innsmouth.library.controller.books.BookCatalogController;
+import com.innsmouth.library.controller.login.UserSingleton;
 import com.innsmouth.library.controller.orders.OrderCatalogController;
 import com.innsmouth.library.controller.users.UserCatalogController;
+import com.innsmouth.library.controller.users.UserMenuInformController;
+import com.innsmouth.library.data.dataobject.LibrarianReader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class MainMenuController {
     public static final String LAYOUT = "/com/innsmouth/library/view/main/main_menu.fxml";
+    private final UserSingleton userSingleton = UserSingleton.getInstance();
 
     public MainMenuController(Stage stage) {
         this.stage = stage;
@@ -63,9 +69,22 @@ public class MainMenuController {
     }
 
     public void goToUsersCatalog() throws Exception {
-        Scene scene = generateUsersCatalogScene();
+        Scene scene;
+
+        if (userSingleton.getCurrentUser() instanceof LibrarianReader) {
+            scene = generateUsersCatalogScene();
+        } else {
+            scene = generateUserInfoScene();
+        }
         stage.setScene(scene);
         stage.show();
+    }
+
+    private Scene generateUserInfoScene() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(UserMenuInformController.LAYOUT));
+        loader.setControllerFactory(t -> UserMenuInformController.createInstance(stage, userSingleton.getCurrentUser().getId()));
+
+        return new Scene(loader.load());
     }
 
     private Scene generateUsersCatalogScene() throws Exception {

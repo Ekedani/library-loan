@@ -7,7 +7,7 @@ abstract public class BaseUser {
         this.id = id;
     }
 
-    protected long getId() {
+    public long getId() {
         return id;
     }
 

@@ -19,17 +19,17 @@ public class DerbyLoginRepository implements LoginRepository {
     private final QueryRunner dbAccess = new QueryRunner();
 
     @Override
-    public boolean validateCredentials(String email, String password) {
+    public long validateCredentials(String email, String password) {
         try {
             connection = DriverManager.getConnection("jdbc:derby:" + DATABASE_PATH);
 
             List<User> usersList = dbAccess.query(connection,"SELECT * FROM READER WHERE EMAIL=? AND PASSWORD=?", new BeanListHandler<>(User.class), email, password);
-            if(usersList.isEmpty()) return false;
-            else return true;
+            if (usersList.isEmpty()) return -1;
+            return usersList.get(0).getReaderId();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return false;
+        return -1;
     }
 
     @Override

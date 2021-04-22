@@ -1,6 +1,8 @@
 package com.innsmouth.library.controller.users;
 
 import com.innsmouth.library.controller.login.UserSingleton;
+import com.innsmouth.library.controller.main.MainMenuController;
+import com.innsmouth.library.data.dataobject.LibrarianReader;
 import com.innsmouth.library.domain.facade.UserRepositoryFacade;
 import com.innsmouth.library.domain.repository.derby.DerbyUserRepository;
 import javafx.event.ActionEvent;
@@ -17,6 +19,7 @@ import java.util.ResourceBundle;
 
 public class UserMenuInformController implements Initializable {
     public final static String LAYOUT = "/com/innsmouth/library/view/users/user_menu_inform.fxml";
+    private final UserSingleton userSingleton = UserSingleton.getInstance();
 
     public static UserMenuInformController createInstance(Stage stage, long selectedUserId) {
         return new UserMenuInformController(sCreateFacade(), stage, selectedUserId);
@@ -58,10 +61,27 @@ public class UserMenuInformController implements Initializable {
 
     public void onBackPressed(ActionEvent actionEvent) {
         try {
-            goToCatalog();
+            if (userSingleton.getCurrentUser() instanceof LibrarianReader) {
+                goToCatalog();
+            } else {
+                goToMain();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void goToMain() throws Exception {
+        Scene scene = generateScene();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private Scene generateScene() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(MainMenuController.LAYOUT));
+        loader.setControllerFactory(t -> MainMenuController.createInstance(stage));
+
+        return new Scene(loader.load());
     }
 
     @Override

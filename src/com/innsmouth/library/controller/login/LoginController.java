@@ -52,17 +52,18 @@ public class LoginController implements Initializable {
 
     @FXML
     private void onLibraryLogin(ActionEvent actionEvent) {
-        boolean credentialsValid = validateCredentials();
+        long userId = validateCredentials();
+        boolean credentialsValid = userId != -1;
 
         if (credentialsValid){
-            onLibraryCredentialsValid();
+            onLibraryCredentialsValid(userId);
         } else {
             onInvalidCredentials();
         }
     }
 
-    private void onLibraryCredentialsValid() {
-        LibrarianReader reader = new LibrarianReader(getID());
+    private void onLibraryCredentialsValid(long userId) {
+        LibrarianReader reader = new LibrarianReader(userId);
         userSingleton.setCurrentUser(reader);
 
         onLoginFinish();
@@ -70,18 +71,19 @@ public class LoginController implements Initializable {
 
     @FXML
     private void onUserLogin(ActionEvent actionEvent) {
-        boolean credentialsValid = validateCredentials();
+        long userId = validateCredentials();
+        boolean credentialsValid = userId != -1;
 
         if (credentialsValid){
-            onReaderCredentialsValid();
+            onReaderCredentialsValid(userId);
         } else {
             onInvalidCredentials();
         }
 
     }
 
-    private void onReaderCredentialsValid() {
-        UserReader reader = new UserReader(getID());
+    private void onReaderCredentialsValid(long userId) {
+        UserReader reader = new UserReader(userId);
         userSingleton.setCurrentUser(reader);
         onLoginFinish();
     }
@@ -111,7 +113,7 @@ public class LoginController implements Initializable {
         return new Scene(loader.load());
     }
 
-    private boolean validateCredentials() {
+    private long validateCredentials() {
        return facade.credentialsValid(getEmail(), getPassword());
     }
 
