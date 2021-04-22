@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.innsmouth.library.view.orders.OrderCatalog"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="470.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.innsmouth.library.controller.orders.OrderCatalogController">
+    <children>
+        <Label layoutX="112.0" layoutY="47.0" text="Name" />
+        <Label layoutX="112.0" layoutY="93.0" text="Email" />
+        <Label layoutX="112.0" layoutY="135.0" text="Address" />
+        <Label layoutX="112.0" layoutY="180.0" text="Number" />
+        <TextField fx:id="searchOrder_userId" layoutX="210.0" layoutY="43.0" />
+        <TextField fx:id="searchOrder_bookId" layoutX="210.0" layoutY="89.0" />
+        <Button fx:id="searchOrder_searchBtn" layoutX="184.0" layoutY="225.0" mnemonicParsing="false" onAction="#onSearch" text="Search" />
+        <TableView fx:id="order_table" layoutY="267.0" prefHeight="233.0" prefWidth="470.0">
+            <columns>
+                <TableColumn fx:id="col_userId" prefWidth="75.0" text="User Id" />
+                <TableColumn fx:id="col_bookId" prefWidth="75.0" text="Book Id" />
+                <TableColumn fx:id="col_tookDate" prefWidth="75.0" text="Took Date" />
+                <TableColumn fx:id="col_returnDate" prefWidth="75.0" text="Return Date" />
+                <TableColumn fx:id="col_returned" prefWidth="75.0" text="Returned" />
+            </columns>
+        </TableView>
+        <Button fx:id="searchUser_showAllBtn" layoutX="258.0" layoutY="225.0" mnemonicParsing="false" onAction="#onShowAll" text="Show all" />
+        <Button fx:id="searchUser_moreBtn" layoutX="209.0" layoutY="527.0" mnemonicParsing="false" onAction="#onMorePressed" text="More" />
+    </children>
+</Pane>

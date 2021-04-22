@@ -1,6 +1,6 @@
 package com.innsmouth.library.controller.books;
 
-import com.innsmouth.library.data.query.BookQuery;
+import com.innsmouth.library.data.dataobject.Book;
 import com.innsmouth.library.domain.facade.BookRepositoryFacade;
 import com.innsmouth.library.data.dataobject.Book;
 import com.innsmouth.library.domain.repository.derby.DerbyBookRepository;
@@ -133,15 +133,15 @@ public class BookCatalogController implements Initializable {
     }
 
     private void queryBooks() {
-        BookQuery query = createQuery();
+        Book query = create();
         List<Book> resultList = facade.search(query);
 
         bookObservableList.setAll(resultList);
         resultList.forEach(System.out::println);
     }
 
-    private BookQuery createQuery() {
-        BookQuery result = new BookQuery();
+    private Book create() {
+        Book result = new Book();
         result.setAuthor(getAuthorText());
         result.setTitle(getTitleText());
         result.setPublishYear(getYearText());

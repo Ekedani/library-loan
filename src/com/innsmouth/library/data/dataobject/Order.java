@@ -1,22 +1,23 @@
 package com.innsmouth.library.data.dataobject;
 
 public class Order {
-    private long orderId;
-    private long readerId;
-    private String book;
+    private long   orderId;
+    private long   readerId;
+    private String bookId;
     private String take_date;
     private String return_date;
+    private String returned;
 
     public long getReaderId() {
         return readerId;
     }
 
-    public String getBook() {
-        return book;
+    public String getBookId() {
+        return bookId;
     }
 
-    public void setBook(String book) {
-        this.book = book;
+    public void setBookId(String bookId) {
+        this.bookId = bookId;
     }
 
     public void setReaderId(long readerId) {
@@ -45,5 +46,13 @@ public class Order {
 
     public void setOrderId(long orderId) {
         this.orderId = orderId;
+    }
+
+    public String getReturned() {
+        return returned;
+    }
+
+    public void setReturned(String returned) {
+        this.returned = returned;
     }
 }

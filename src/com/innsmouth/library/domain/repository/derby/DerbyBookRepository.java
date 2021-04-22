@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 import com.innsmouth.library.data.dataobject.Book;
-import com.innsmouth.library.data.query.BookQuery;
 import com.innsmouth.library.domain.repository.api.BookRepository;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -53,8 +52,8 @@ public class DerbyBookRepository implements BookRepository {
     }
 
     @Override
-    public long insertBook(BookQuery bookQuery) {
-        String[] queryParams = generateAddParams(bookQuery);
+    public long insertBook(Book Book) {
+        String[] queryParams = generateAddParams(Book);
         String sqlAddQuery = generateAddQuery();
 
         try {
@@ -70,22 +69,22 @@ public class DerbyBookRepository implements BookRepository {
         return "INSERT INTO BOOK (title, author, genre, PUBLISHYEAR, annotation, COPIESGIVEN, copiespresent) VALUES (?, ?, ?, ?, ?, ?, ?)";
     }
 
-    private String[] generateAddParams(BookQuery bookQuery) {
+    private String[] generateAddParams(Book Book) {
         final int paramsNum = 7;
         String[] result = new String[paramsNum];
-        result[0] = bookQuery.getTitle();
-        result[1] = bookQuery.getAuthor();
-        result[2] = bookQuery.getGenre();
-        result[3] = Integer.toString(bookQuery.getPublishYear());
-        result[4] = bookQuery.getAnnotation();
-        result[5] = Integer.toString( bookQuery.getCopiesGiven());
-        result[6] = Integer.toString( bookQuery.getCopiesPresent());
+        result[0] = Book.getTitle();
+        result[1] = Book.getAuthor();
+        result[2] = Book.getGenre();
+        result[3] = Integer.toString(Book.getPublishYear());
+        result[4] = Book.getAnnotation();
+        result[5] = Integer.toString( Book.getCopiesGiven());
+        result[6] = Integer.toString( Book.getCopiesPresent());
 
         return result;
     }
 
     @Override
-    public boolean updateBook(BookQuery book) {
+    public boolean updateBook(Book book) {
 
         try {
             dbAccess.update(connection, "UPDATE Book SET title=?, author=?, PUBLISHYEAR=?, COPIESPRESENT=?, GENRE=?, ANNOTATION=? WHERE BOOKID=?",
@@ -99,7 +98,7 @@ public class DerbyBookRepository implements BookRepository {
     }
 
     @Override
-    public boolean deleteBook(BookQuery book) {
+    public boolean deleteBook(Book book) {
         try {
             dbAccess.update(connection, "DELETE FROM book WHERE BOOKID=?", book.getBookID());
             return true;
@@ -110,7 +109,7 @@ public class DerbyBookRepository implements BookRepository {
     }
 
     @Override
-    public List<Book> findBookByProperty(BookQuery query) {
+    public List<Book> findBookByProperty(Book query) {
         ArrayList<String> whereClauses = new ArrayList<>();
         ArrayList<String> valueClauses = new ArrayList<>();
 
@@ -186,29 +185,29 @@ public class DerbyBookRepository implements BookRepository {
         valueClause.add(valueText);
     }
 
-    private void generateClauses(ArrayList<String> whereClauses, ArrayList<String> valueClauses, BookQuery query) {
+    private void generateClauses(ArrayList<String> whereClauses, ArrayList<String> valueClauses, Book query) {
         authorLikeClause(whereClauses, valueClauses, query);
         genreLikeClause(whereClauses, valueClauses, query);
         yearLikeClause(whereClauses, valueClauses, query);
         titleLikeClause(whereClauses, valueClauses, query);
     }
 
-    private void genreLikeClause(ArrayList<String> whereClauses, ArrayList<String> valueClauses, BookQuery query) {
+    private void genreLikeClause(ArrayList<String> whereClauses, ArrayList<String> valueClauses, Book query) {
         String genreQueryText = query.getGenre();
         addLikeClause(whereClauses, valueClauses, genreQueryText, GENRE_COL);
     }
 
-    private void authorLikeClause(ArrayList<String> whereClauses, ArrayList<String> valueClauses, BookQuery query) {
+    private void authorLikeClause(ArrayList<String> whereClauses, ArrayList<String> valueClauses, Book query) {
         String authorQueryText = query.getAuthor();
         addLikeClause(whereClauses, valueClauses, authorQueryText, AUTHOR_COL);
     }
 
-    private void yearLikeClause(ArrayList<String> whereClauses, ArrayList<String> valueClauses, BookQuery query) {
+    private void yearLikeClause(ArrayList<String> whereClauses, ArrayList<String> valueClauses, Book query) {
         String yearQueryText = String.valueOf(query.getPublishYear());
         addEqualsClause(whereClauses, valueClauses, yearQueryText, YEAR_COL);
     }
 
-    private void titleLikeClause(ArrayList<String> whereClauses, ArrayList<String> valueClauses, BookQuery query) {
+    private void titleLikeClause(ArrayList<String> whereClauses, ArrayList<String> valueClauses, Book query) {
         String titleQueryText = query.getTitle();
         addLikeClause(whereClauses, valueClauses, titleQueryText, TITLE_COL);
     }

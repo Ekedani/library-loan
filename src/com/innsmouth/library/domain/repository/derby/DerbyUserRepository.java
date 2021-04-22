@@ -1,7 +1,6 @@
 package com.innsmouth.library.domain.repository.derby;
 
 import com.innsmouth.library.data.dataobject.User;
-import com.innsmouth.library.data.query.UserQuery;
 import com.innsmouth.library.domain.repository.api.UserRepository;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -28,10 +27,10 @@ public class DerbyUserRepository implements UserRepository {
     private final QueryRunner dbAccess = new QueryRunner();
 
     @Override
-    public void insertUser(UserQuery user) {
+    public void insertUser(User user) {
        try {
            dbAccess.insert(connection, "INSERT INTO READER (name, address, phonenumber, email, password) VALUES (?, ?, ?, ?, ?)",
-                   new ScalarHandler<BigDecimal>(), user.getName(), user.getAddress(), user.getNumber(), user.getEmail(), user.getPassword());
+                   new ScalarHandler<BigDecimal>(), user.getName(), user.getAddress(), user.getPhoneNumber(), user.getEmail(), user.getPassword());
        } catch (Exception e) {
            e.printStackTrace();
        }
@@ -39,10 +38,10 @@ public class DerbyUserRepository implements UserRepository {
     }
 
     @Override
-    public boolean updateUser(UserQuery user) {
+    public boolean updateUser(User user) {
         try {
             dbAccess.update(connection, "UPDATE READER SET name=?, address=?, phonenumber=?, email=? WHERE READERID=?",
-                    user.getName(), user.getAddress(), user.getNumber(), user.getEmail(), user.getId());
+                    user.getName(), user.getAddress(), user.getPhoneNumber(), user.getEmail(), user.getReaderId());
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -63,7 +62,7 @@ public class DerbyUserRepository implements UserRepository {
     }
 
     @Override
-    public List<User> findUserByProperty(UserQuery query) {
+    public List<User> findUserByProperty(User query) {
         ArrayList<String> whereClauses = new ArrayList<>();
         ArrayList<String> valueClauses = new ArrayList<>();
 
@@ -146,7 +145,7 @@ public class DerbyUserRepository implements UserRepository {
         sqlQuery.append(likeClause);
     }
 
-    private void generateClauses(ArrayList<String> whereClauses, ArrayList<String> valueClauses, UserQuery query) {
+    private void generateClauses(ArrayList<String> whereClauses, ArrayList<String> valueClauses, User query) {
         nameLikeClause(whereClauses, valueClauses, query);
         addressLikeClause(whereClauses, valueClauses, query);
         emailLikeClause(whereClauses, valueClauses, query);
@@ -164,18 +163,18 @@ public class DerbyUserRepository implements UserRepository {
         valueClause.add(valueText);
     }
 
-    private void nameLikeClause(ArrayList<String> whereClauses, ArrayList<String> valueClauses, UserQuery query) {
+    private void nameLikeClause(ArrayList<String> whereClauses, ArrayList<String> valueClauses, User query) {
         String nameQueryText = query.getName();
         addLikeClause(whereClauses, valueClauses, nameQueryText, NAME_COL);
     }
 
-    private void addressLikeClause(ArrayList<String> whereClauses, ArrayList<String> valueClauses, UserQuery query) {
+    private void addressLikeClause(ArrayList<String> whereClauses, ArrayList<String> valueClauses, User query) {
         String addressQueryText = query.getAddress();
         addLikeClause(whereClauses, valueClauses, addressQueryText, ADDRESS_COL);
     }
 
-    private void numberLikeClause(ArrayList<String> whereClauses, ArrayList<String> valueClauses, UserQuery query) {
-        String numberQueryText = String.valueOf(query.getNumber());
+    private void numberLikeClause(ArrayList<String> whereClauses, ArrayList<String> valueClauses, User query) {
+        String numberQueryText = String.valueOf(query.getPhoneNumber());
         addEqualsClause(whereClauses, valueClauses, numberQueryText, NUMBER_COL);
     }
 
@@ -190,7 +189,7 @@ public class DerbyUserRepository implements UserRepository {
         valueClause.add(valueText);
     }
 
-    private void emailLikeClause(ArrayList<String> whereClauses, ArrayList<String> valueClauses, UserQuery query) {
+    private void emailLikeClause(ArrayList<String> whereClauses, ArrayList<String> valueClauses, User query) {
         String emailQueryText = query.getEmail();
         addLikeClause(whereClauses, valueClauses, emailQueryText, EMAIL_COL);
     }

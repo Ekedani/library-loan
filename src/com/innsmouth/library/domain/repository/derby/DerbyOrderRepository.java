@@ -1,7 +1,5 @@
 package com.innsmouth.library.domain.repository.derby;
 
-import com.innsmouth.library.data.dataobject.Book;
-import com.innsmouth.library.data.query.BookQuery;
 import com.innsmouth.library.domain.repository.api.OrderRepository;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 import com.innsmouth.library.data.dataobject.Order;
@@ -10,13 +8,8 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
-
-
-import java.math.BigDecimal;
 
 public class DerbyOrderRepository implements OrderRepository {
     private static final String ID_COL = "Reader ID";
@@ -68,7 +61,7 @@ public class DerbyOrderRepository implements OrderRepository {
         final int paramsNum = 4;
         String[] result = new String[paramsNum];
         result[0] = String.valueOf(order.getReaderId());
-        result[1] = order.getBook();
+        result[1] = order.getBookId();
         result[2] = order.getTake_date();
         result[3] = order.getReturn_date();
 

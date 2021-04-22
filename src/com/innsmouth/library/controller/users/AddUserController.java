@@ -2,8 +2,8 @@ package com.innsmouth.library.controller.users;
 
 import com.innsmouth.library.controller.books.IntTextFormatter;
 import com.innsmouth.library.data.dataobject.Book;
-import com.innsmouth.library.data.query.BookQuery;
-import com.innsmouth.library.data.query.UserQuery;
+import com.innsmouth.library.data.dataobject.Book;
+import com.innsmouth.library.data.dataobject.User;
 import com.innsmouth.library.domain.facade.BookRepositoryFacade;
 import com.innsmouth.library.domain.facade.UserRepositoryFacade;
 import javafx.collections.FXCollections;
@@ -62,15 +62,15 @@ public class AddUserController implements Initializable {
 
 
     private void addUser() {
-        UserQuery query = createQuery();
+        User query = create();
         facade.addUser(query);
     }
 
-    private UserQuery createQuery() {
-        UserQuery result = new UserQuery();
+    private User create() {
+        User result = new User();
         result.setName(getName());
         result.setAddress(getAddress());
-        result.setNumber(getNumber());
+        result.setPhoneNumber(getNumber());
         result.setEmail(getEmail());
         result.setPassword(getPassword());
 

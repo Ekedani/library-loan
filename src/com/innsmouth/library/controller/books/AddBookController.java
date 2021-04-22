@@ -1,7 +1,7 @@
 package com.innsmouth.library.controller.books;
 
 import com.innsmouth.library.data.dataobject.Book;
-import com.innsmouth.library.data.query.BookQuery;
+import com.innsmouth.library.data.dataobject.Book;
 import com.innsmouth.library.domain.facade.BookRepositoryFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -63,12 +63,12 @@ public class AddBookController implements Initializable {
 
 
     private void addBook() {
-        BookQuery query = createQuery();
+        Book query = create();
         facade.addNewBook(query);
     }
 
-    private BookQuery createQuery() {
-        BookQuery result = new BookQuery();
+    private Book create() {
+        Book result = new Book();
         result.setAuthor(getAuthorText());
         result.setTitle(getTitleText());
         result.setPublishYear(getYearText());

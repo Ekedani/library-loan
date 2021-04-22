@@ -1,7 +1,7 @@
 package com.innsmouth.library.domain.facade;
 
 import com.innsmouth.library.data.dataobject.User;
-import com.innsmouth.library.data.query.UserQuery;
+import com.innsmouth.library.data.dataobject.User;
 import com.innsmouth.library.domain.repository.api.UserRepository;
 
 import java.util.List;
@@ -21,13 +21,13 @@ public class UserRepositoryFacade {
     }
 
 
-    public void addUser(UserQuery query) {
+    public void addUser(User query) {
         repository.insertUser(query);
     }
 
     public User selectUserByID(long ID){return repository.selectUserById(ID);}
 
-    public List<User> search(UserQuery query) {
+    public List<User> search(User query) {
         return repository.findUserByProperty(query);
     }
 
@@ -44,7 +44,7 @@ public class UserRepositoryFacade {
         }
     }
 
-    public void updateUser(UserQuery query){
+    public void updateUser(User query){
         repository.updateUser(query);
     }
 

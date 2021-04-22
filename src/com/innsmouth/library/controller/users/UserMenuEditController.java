@@ -1,6 +1,6 @@
 package com.innsmouth.library.controller.users;
 
-import com.innsmouth.library.data.query.UserQuery;
+import com.innsmouth.library.data.dataobject.User;
 import com.innsmouth.library.domain.facade.UserRepositoryFacade;
 import javafx.event.ActionEvent;
 import com.innsmouth.library.data.dataobject.User;
@@ -96,7 +96,7 @@ public class UserMenuEditController implements Initializable {
     }
 
     private void editUser() {
-        UserQuery query = createQuery();
+        User query = create();
         facade.updateUser(query);
     }
 
@@ -115,13 +115,13 @@ public class UserMenuEditController implements Initializable {
         userMenu_Email.setText(selectedUser.getEmail());
     }
 
-    private UserQuery createQuery() {
-        UserQuery result = new UserQuery();
-        result.setId(selectedUserId);
+    private User create() {
+        User result = new User();
+        result.setReaderId(selectedUserId);
         result.setName(getNameText());
         result.setAddress(getAddressText());
         result.setEmail(getEmailText());
-        result.setNumber(getNumberText());
+        result.setPhoneNumber(getNumberText());
         return result;
     }
 

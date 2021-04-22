@@ -3,7 +3,7 @@ package com.innsmouth.library.controller.users;
 import com.innsmouth.library.controller.login.UserSingleton;
 import com.innsmouth.library.data.dataobject.Book;
 import com.innsmouth.library.data.dataobject.User;
-import com.innsmouth.library.data.query.UserQuery;
+import com.innsmouth.library.data.dataobject.User;
 import com.innsmouth.library.domain.facade.UserRepositoryFacade;
 import com.innsmouth.library.domain.repository.derby.DerbyUserRepository;
 import javafx.collections.FXCollections;
@@ -116,18 +116,18 @@ public class UserCatalogController implements Initializable {
         System.out.println("Address: " + getAddress());
     }
 
-    private UserQuery createQuery() {
-        UserQuery result = new UserQuery();
+    private User create() {
+        User result = new User();
         result.setName(getName());
         result.setEmail(getEmail());
         result.setAddress(getAddress());
-        result.setNumber(getNumber());
+        result.setPhoneNumber(getNumber());
 
         return result;
     }
 
     private void queryUsers() {
-        UserQuery query = createQuery();
+        User query = create();
         List<User> resultList = facade.search(query);
 
         userObservableList.setAll(resultList);

@@ -1,7 +1,7 @@
 package com.innsmouth.library.controller.books;
 
 import com.innsmouth.library.data.dataobject.Book;
-import com.innsmouth.library.data.query.BookQuery;
+import com.innsmouth.library.data.dataobject.Book;
 import com.innsmouth.library.domain.facade.BookRepositoryFacade;
 import com.innsmouth.library.domain.repository.derby.DerbyBookRepository;
 import javafx.event.ActionEvent;
@@ -62,7 +62,7 @@ public class BookMenuEditController implements Initializable {
     }
 
     private void deleteBook(){
-        BookQuery query = createQuery();
+        Book query = create();
         facade.deleteBook(query);
 
         try {
@@ -73,12 +73,12 @@ public class BookMenuEditController implements Initializable {
     }
 
     private void editBook() {
-        BookQuery query = createQuery();
+        Book query = create();
         facade.updateBook(query);
     }
 
-    private BookQuery createQuery() {
-        BookQuery result = new BookQuery();
+    private Book create() {
+        Book result = new Book();
         result.setBookID(selectedBookId);
         result.setAuthor(getAuthorText());
         result.setTitle(getTitleText());
