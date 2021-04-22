@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.innsmouth.library.view.orders.OrderInform"
-            prefHeight="400.0" prefWidth="600.0">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="307.0" prefWidth="499.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.innsmouth.library.controller.users.UserMenuInformController">
+    <Separator layoutX="14.0" layoutY="43.0" prefHeight="3.0" prefWidth="474.0" />
+    <Separator layoutX="14.0" layoutY="195.0" prefHeight="3.0" prefWidth="474.0" />
+   <Label layoutX="14.0" layoutY="14.0" prefHeight="23.0" prefWidth="53.0" text="Order ID" />
+   <Label layoutX="118.0" layoutY="17.0" prefHeight="17.0" prefWidth="362.0" text="ID" />
+   <Label layoutX="14.0" layoutY="55.0" prefHeight="17.0" prefWidth="53.0" text="Book" />
+   <Label layoutX="15.0" layoutY="90.0" prefHeight="17.0" prefWidth="64.0" text="User ID" />
+   <Label layoutX="15.0" layoutY="117.0" prefHeight="17.0" prefWidth="64.0" text="Took Date" />
+   <Label layoutX="13.0" layoutY="146.0" prefHeight="17.0" prefWidth="87.0" text="Return Date" />
+   <Label layoutX="118.0" layoutY="55.0" prefHeight="17.0" prefWidth="362.0" text="BOOK NAME" />
+   <Label layoutX="118.0" layoutY="90.0" prefHeight="17.0" prefWidth="362.0" text="USER ID" />
+   <Label layoutX="118.0" layoutY="117.0" prefHeight="17.0" prefWidth="362.0" text="TOOK DATE" />
+   <Label layoutX="118.0" layoutY="146.0" prefHeight="17.0" prefWidth="362.0" text="RETURN DATE" />
+   <Button layoutX="37.0" layoutY="253.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="126.0" text="Back" />
+   <Button layoutX="340.0" layoutY="253.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="126.0" text="Is Returned" />
+   <Label layoutX="37.0" layoutY="213.0" prefHeight="17.0" prefWidth="126.0" text="Is returned" />
+   <Label layoutX="261.0" layoutY="213.0" prefHeight="17.0" prefWidth="64.0" text="YES OR NO" />
 
-</AnchorPane>
+    
+</Pane>
