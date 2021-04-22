@@ -2,25 +2,53 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="297.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.innsmouth.library.controller.books.BookMenuEditController">
     <Separator layoutX="14.0" layoutY="43.0" prefHeight="2.0" prefWidth="271.0" />
     <Separator layoutX="14.0" layoutY="195.0" prefHeight="2.0" prefWidth="271.0" />
 
-    <Label layoutX="14.0" layoutY="14.0" prefHeight="23.0" prefWidth="50.0" text="Title" />
-    <Label layoutX="14.0" layoutY="55.0" prefHeight="17.0" prefWidth="38.0" text="Author" />
-    <Label layoutX="14.0" layoutY="85.0" text="Genre" />
-    <Label layoutX="14.0" layoutY="116.0" text="Year" />
-    <Label layoutX="14.0" layoutY="149.0" text="Amount" />
-    <Label layoutX="16.0" layoutY="203.0" text="Annotation" />
+    <Label layoutX="14.0" layoutY="14.0" prefHeight="23.0" prefWidth="50.0" text="Title">
+      <font>
+         <Font size="20.0" />
+      </font></Label>
+    <Label layoutX="14.0" layoutY="55.0" prefHeight="31.0" prefWidth="71.0" text="Author">
+      <font>
+         <Font size="21.0" />
+      </font></Label>
+    <Label layoutX="14.0" layoutY="85.0" text="Genre">
+      <font>
+         <Font size="20.0" />
+      </font></Label>
+    <Label layoutX="14.0" layoutY="116.0" text="Year">
+      <font>
+         <Font size="20.0" />
+      </font></Label>
+    <Label layoutX="14.0" layoutY="149.0" text="Amount">
+      <font>
+         <Font size="20.0" />
+      </font></Label>
+    <Label layoutX="16.0" layoutY="203.0" text="Annotation">
+      <font>
+         <Font size="19.0" />
+      </font></Label>
 
-    <Button fx:id="bookMenu_confirmBtn" layoutX="220.0" layoutY="385.0" mnemonicParsing="false" onAction="#onConfirmBook" prefHeight="25.0" prefWidth="59.0" text="Confirm" />
-    <TextField fx:id="bookMenu_title" layoutX="63.0" layoutY="13.0" prefHeight="3.0" prefWidth="149.0" />
-    <TextField fx:id="bookMenu_author" layoutX="63.0" layoutY="51.0" prefHeight="3.0" prefWidth="149.0" />
-    <TextField fx:id="bookMenu_genre" layoutX="63.0" layoutY="81.0" prefHeight="3.0" prefWidth="149.0" />
-    <TextField fx:id="bookMenu_year" layoutX="63.0" layoutY="112.0" prefHeight="3.0" prefWidth="149.0" />
-    <TextField fx:id="bookMenu_amount" layoutX="63.0" layoutY="145.0" prefHeight="3.0" prefWidth="149.0" />
+    <Button fx:id="bookMenu_confirmBtn" layoutX="196.0" layoutY="379.0" mnemonicParsing="false" onAction="#onConfirmBook" prefHeight="37.0" prefWidth="85.0" text="Confirm">
+      <font>
+         <Font size="16.0" />
+      </font></Button>
+    <TextField fx:id="bookMenu_title" layoutX="101.0" layoutY="14.0" prefHeight="3.0" prefWidth="149.0" />
+    <TextField fx:id="bookMenu_author" layoutX="101.0" layoutY="58.0" prefHeight="3.0" prefWidth="149.0" />
+    <TextField fx:id="bookMenu_genre" layoutX="101.0" layoutY="88.0" prefHeight="3.0" prefWidth="149.0" />
+    <TextField fx:id="bookMenu_year" layoutX="101.0" layoutY="118.0" prefHeight="3.0" prefWidth="149.0" />
+    <TextField fx:id="bookMenu_amount" layoutX="101.0" layoutY="151.0" prefHeight="3.0" prefWidth="149.0" />
     <TextArea fx:id="bookMenu_annotation" layoutX="39.0" layoutY="231.0" prefHeight="144.0" prefWidth="200.0" />
-   <Button fx:id="bookMenu_back" layoutX="22.0" layoutY="385.0" mnemonicParsing="false" onAction="#onBack" text="Back" />
-   <Button fx:id="bookMenu_deleteBtn" layoutX="153.0" layoutY="385.0" mnemonicParsing="false" onAction="#onDelete" prefHeight="25.0" prefWidth="59.0" text="Delete" />
+   <Button fx:id="bookMenu_back" layoutX="13.0" layoutY="379.0" mnemonicParsing="false" onAction="#onBack" text="Back">
+      <font>
+         <Font size="16.0" />
+      </font></Button>
+   <Button fx:id="bookMenu_deleteBtn" layoutX="113.0" layoutY="379.0" mnemonicParsing="false" onAction="#onDelete" prefHeight="37.0" prefWidth="71.0" text="Delete">
+      <font>
+         <Font size="16.0" />
+      </font></Button>
 </Pane>

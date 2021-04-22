@@ -2,28 +2,50 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.innsmouth.library.controller.books.BookCatalogController">
+<Pane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.innsmouth.library.controller.books.BookCatalogController">
    <children>
-      <TableView fx:id="book_table" layoutY="300.0" prefHeight="300.0" prefWidth="1000.0">
+      <TableView fx:id="book_table" layoutY="300.0" prefHeight="300.0" prefWidth="1000.0" style="-fx-font-size: 14pt;">
         <columns>
-          <TableColumn fx:id="col_title" prefWidth="98.0" text="title" />
-          <TableColumn fx:id="col_genre" prefWidth="110.0" text="genre" />
-            <TableColumn fx:id="col_author" prefWidth="117.0" text="author" />
-            <TableColumn fx:id="col_year" prefWidth="75.0" text="year" />
+          <TableColumn fx:id="col_title" prefWidth="180.9999862909317" text="title" />
+          <TableColumn fx:id="col_genre" prefWidth="104.20001220703125" text="genre" />
+            <TableColumn fx:id="col_author" prefWidth="101.4000244140625" text="author" />
+            <TableColumn fx:id="col_year" prefWidth="127.20001220703125" text="year" />
         </columns>
       </TableView>
-      <Label layoutX="95.0" layoutY="64.0" text="Title" />
-      <Label layoutX="88.0" layoutY="110.0" text="Author" />
-      <Label layoutX="94.0" layoutY="151.0" text="Year" />
-      <Label layoutX="90.0" layoutY="191.0" text="Genre" />
-      <TextField fx:id="searchBook_title" layoutX="149.0" layoutY="60.0" onAction="#onSearch" />
-      <TextField fx:id="searchBook_author" layoutX="149.0" layoutY="106.0" onAction="#onSearch" />
-      <TextField fx:id="searchBook_year" layoutX="149.0" layoutY="147.0" onAction="#onSearch" />
-      <TextField fx:id="searchBook_genre" layoutX="149.0" layoutY="187.0" onAction="#onSearch" />
-      <Button fx:id="searchBook_searchBtn" layoutX="149.0" layoutY="248.0" mnemonicParsing="false" onAction="#onSearch" text="Search" />
-      <Button fx:id="searchBook_showAllBtn" layoutX="236.0" layoutY="248.0" mnemonicParsing="false" onAction="#onShowAll" text="Show All" />
-       <Button fx:id="searchBook_moreBtn" layoutX="14.0" layoutY="633.0" mnemonicParsing="false" onAction="#onMoreClicked" text="More" />
+      <Label layoutX="359.0" layoutY="61.0" text="Title">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label layoutX="352.0" layoutY="107.0" text="Author">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label layoutX="358.0" layoutY="148.0" text="Year">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label layoutX="354.0" layoutY="188.0" text="Genre">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <TextField fx:id="searchBook_title" layoutX="439.0" layoutY="64.0" onAction="#onSearch" />
+      <TextField fx:id="searchBook_author" layoutX="439.0" layoutY="110.0" onAction="#onSearch" />
+      <TextField fx:id="searchBook_year" layoutX="439.0" layoutY="151.0" onAction="#onSearch" />
+      <TextField fx:id="searchBook_genre" layoutX="439.0" layoutY="191.0" onAction="#onSearch" />
+      <Button fx:id="searchBook_searchBtn" layoutX="396.0" layoutY="245.0" mnemonicParsing="false" onAction="#onSearch" text="Search">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Button fx:id="searchBook_showAllBtn" layoutX="500.0" layoutY="245.0" mnemonicParsing="false" onAction="#onShowAll" text="Show All">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+       <Button fx:id="searchBook_moreBtn" layoutX="462.0" layoutY="634.0" mnemonicParsing="false" onAction="#onMoreClicked" text="More">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
 
    </children>
 </Pane>

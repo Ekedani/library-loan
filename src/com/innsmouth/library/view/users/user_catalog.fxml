@@ -2,27 +2,49 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="470.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.innsmouth.library.controller.users.UserCatalogController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="470.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.innsmouth.library.controller.users.UserCatalogController">
    <children>
-      <Label layoutX="112.0" layoutY="47.0" text="Name" />
-      <Label layoutX="112.0" layoutY="93.0" text="Email" />
-      <Label layoutX="112.0" layoutY="135.0" text="Address" />
-      <Label layoutX="112.0" layoutY="180.0" text="Number" />
+      <Label layoutX="112.0" layoutY="47.0" text="Name">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="112.0" layoutY="93.0" text="Email">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="112.0" layoutY="135.0" text="Address">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="112.0" layoutY="180.0" text="Number">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
       <TextField fx:id="searchUser_name" layoutX="210.0" layoutY="43.0" />
       <TextField fx:id="searchUser_email" layoutX="210.0" layoutY="89.0" />
       <TextField fx:id="searchUser_address" layoutX="210.0" layoutY="131.0" />
       <TextField fx:id="searchUser_number" layoutX="210.0" layoutY="176.0" />
-      <Button fx:id="searchUser_searchBtn" layoutX="184.0" layoutY="225.0" mnemonicParsing="false" onAction="#onSearch" text="Search" />
-      <TableView fx:id="user_table" layoutY="267.0" prefHeight="233.0" prefWidth="470.0">
+      <Button fx:id="searchUser_searchBtn" layoutX="150.0" layoutY="225.0" mnemonicParsing="false" onAction="#onSearch" text="Search">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <TableView fx:id="user_table" layoutY="267.0" prefHeight="233.0" prefWidth="470.0" style="-fx-font-size: 14pt;">
         <columns>
-          <TableColumn fx:id="col_name" prefWidth="75.0" text="Name" />
-          <TableColumn fx:id="col_email" prefWidth="75.0" text="Email" />
-            <TableColumn fx:id="col_address" prefWidth="75.0" text="Address" />
-            <TableColumn fx:id="col_number" prefWidth="75.0" text="Number" />
+          <TableColumn fx:id="col_name" prefWidth="81.20001524686813" text="Name" />
+          <TableColumn fx:id="col_email" prefWidth="126.0" text="Email" />
+            <TableColumn fx:id="col_address" prefWidth="120.59996032714844" text="Address" />
+            <TableColumn fx:id="col_number" prefWidth="112.4000244140625" text="Number" />
         </columns>
       </TableView>
-      <Button fx:id="searchUser_showAllBtn" layoutX="258.0" layoutY="225.0" mnemonicParsing="false" onAction="#onShowAll" text="Show all" />
-      <Button fx:id="searchUser_moreBtn" layoutX="209.0" layoutY="527.0" mnemonicParsing="false" onAction="#onMorePressed" text="More" />
+      <Button fx:id="searchUser_showAllBtn" layoutX="254.0" layoutY="225.0" mnemonicParsing="false" onAction="#onShowAll" text="Show all">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <Button fx:id="searchUser_moreBtn" layoutX="209.0" layoutY="527.0" mnemonicParsing="false" onAction="#onMorePressed" text="More">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
    </children>
 </Pane>

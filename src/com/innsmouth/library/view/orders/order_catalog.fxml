@@ -2,26 +2,45 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="470.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.innsmouth.library.controller.orders.OrderCatalogController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.innsmouth.library.controller.orders.OrderCatalogController">
     <children>
-        <Label layoutX="112.0" layoutY="47.0" text="User Id" />
-        <Label layoutX="112.0" layoutY="93.0" text="Book Id" />
-        <Label layoutX="112.0" layoutY="135.0" text="Returned" />
-        <TextField fx:id="searchOrder_userId" layoutX="210.0" layoutY="43.0" />
-        <TextField fx:id="searchOrder_bookId" layoutX="210.0" layoutY="89.0" />
-        <CheckBox fx:id="searchOrder_returned" layoutX="210.0" layoutY="135.0" />
-        <Button fx:id="searchOrder_searchBtn" layoutX="184.0" layoutY="174.0" mnemonicParsing="false" onAction="#onSearch" text="Search" />
-        <TableView fx:id="order_table" layoutY="216.0" prefHeight="233.0" prefWidth="470.0">
+        <Label layoutX="167.0" layoutY="47.0" text="User Id">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+        <Label layoutX="165.0" layoutY="87.0" text="Book Id">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+        <Label layoutX="166.0" layoutY="131.0" text="Returned">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+        <TextField fx:id="searchOrder_userId" layoutX="270.0" layoutY="47.0" />
+        <TextField fx:id="searchOrder_bookId" layoutX="270.0" layoutY="87.0" />
+        <CheckBox fx:id="searchOrder_returned" layoutX="336.0" layoutY="135.0" />
+        <Button fx:id="searchOrder_searchBtn" layoutX="192.0" layoutY="174.0" mnemonicParsing="false" onAction="#onSearch" text="Search">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+        <TableView fx:id="order_table" layoutY="216.0" prefHeight="233.0" prefWidth="600.0" style="-fx-font-size: 14pt;">
             <columns>
-                <TableColumn fx:id="col_userId" prefWidth="75.0" text="User Id" />
-                <TableColumn fx:id="col_bookId" prefWidth="75.0" text="Book Id" />
-                <TableColumn fx:id="col_tookDate" prefWidth="75.0" text="Took Date" />
-                <TableColumn fx:id="col_returnDate" prefWidth="75.0" text="Return Date" />
-                <TableColumn fx:id="col_returned" prefWidth="75.0" text="Returned" />
+                <TableColumn fx:id="col_userId" prefWidth="89.60000306367874" text="User Id" />
+                <TableColumn fx:id="col_bookId" prefWidth="81.60000610351562" text="Book Id" />
+                <TableColumn fx:id="col_tookDate" prefWidth="140.00001525878906" text="Took Date" />
+                <TableColumn fx:id="col_returnDate" prefWidth="135.0" text="Return Date" />
+                <TableColumn fx:id="col_returned" prefWidth="155.5999755859375" text="Returned" />
             </columns>
         </TableView>
-        <Button fx:id="searchUser_showAllBtn" layoutX="258.0" layoutY="174.0" mnemonicParsing="false" onAction="#onShowAll" text="Show all" />
-        <Button fx:id="searchUser_moreBtn" layoutX="209.0" layoutY="476.0" mnemonicParsing="false" onAction="#onMorePressed" text="More" />
+        <Button fx:id="searchUser_showAllBtn" layoutX="325.0" layoutY="174.0" mnemonicParsing="false" onAction="#onShowAll" text="Show all">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+        <Button fx:id="searchUser_moreBtn" layoutX="250.0" layoutY="456.0" mnemonicParsing="false" onAction="#onMorePressed" text="More">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
     </children>
 </Pane>

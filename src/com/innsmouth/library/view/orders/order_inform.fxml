@@ -2,25 +2,71 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="307.0" prefWidth="499.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.innsmouth.library.controller.orders.OrderInformController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="307.0" prefWidth="499.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.innsmouth.library.controller.orders.OrderInformController">
     <Separator layoutX="14.0" layoutY="43.0" prefHeight="3.0" prefWidth="474.0" />
     <Separator layoutX="14.0" layoutY="195.0" prefHeight="3.0" prefWidth="474.0" />
-   <Label layoutX="14.0" layoutY="14.0" prefHeight="23.0" prefWidth="53.0" text="Order ID" />
-   <Label layoutX="14.0" layoutY="55.0" prefHeight="17.0" prefWidth="53.0" text="Book" />
-   <Label layoutX="15.0" layoutY="90.0" prefHeight="17.0" prefWidth="64.0" text="User ID" />
-   <Label layoutX="15.0" layoutY="117.0" prefHeight="17.0" prefWidth="64.0" text="Took Date" />
-   <Label layoutX="13.0" layoutY="146.0" prefHeight="17.0" prefWidth="87.0" text="Return Date" />
-   <Button layoutX="37.0" layoutY="253.0" mnemonicParsing="false" onAction="#onBackPressed" prefHeight="34.0" prefWidth="126.0" text="Back" />
-   <Button layoutX="340.0" layoutY="253.0" mnemonicParsing="false" onAction="#onOrderReturned" prefHeight="34.0" prefWidth="126.0" text="Is Returned" />
-   <Label layoutX="37.0" layoutY="213.0" prefHeight="17.0" prefWidth="126.0" text="Is returned" />
+   <Label layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="75.0" text="Order ID">
+      <font>
+         <Font size="16.0" />
+      </font></Label>
+   <Label layoutX="14.0" layoutY="55.0" prefHeight="17.0" prefWidth="53.0" text="Book">
+      <font>
+         <Font size="16.0" />
+      </font></Label>
+   <Label layoutX="15.0" layoutY="90.0" prefHeight="17.0" prefWidth="64.0" text="User ID">
+      <font>
+         <Font size="16.0" />
+      </font></Label>
+   <Label layoutX="15.0" layoutY="117.0" prefHeight="25.0" prefWidth="75.0" text="Took Date">
+      <font>
+         <Font size="16.0" />
+      </font></Label>
+   <Label layoutX="13.0" layoutY="146.0" prefHeight="17.0" prefWidth="87.0" text="Return Date">
+      <font>
+         <Font size="16.0" />
+      </font></Label>
+   <Button layoutX="37.0" layoutY="253.0" mnemonicParsing="false" onAction="#onBackPressed" prefHeight="34.0" prefWidth="126.0" text="Back">
+      <font>
+         <Font size="16.0" />
+      </font></Button>
+   <Button layoutX="340.0" layoutY="253.0" mnemonicParsing="false" onAction="#onOrderReturned" prefHeight="34.0" prefWidth="126.0" text="Is Returned">
+      <font>
+         <Font size="16.0" />
+      </font></Button>
+   <Label layoutX="37.0" layoutY="213.0" prefHeight="17.0" prefWidth="126.0" text="Is returned">
+      <font>
+         <Font size="16.0" />
+      </font></Label>
 
-   <Label fx:id="orderId" layoutX="118.0" layoutY="17.0" prefHeight="17.0" prefWidth="362.0" text="ID" />
-   <Label fx:id="bookId" layoutX="118.0" layoutY="55.0" prefHeight="17.0" prefWidth="362.0" text="BOOK NAME" />
-   <Label fx:id="userId" layoutX="118.0" layoutY="90.0" prefHeight="17.0" prefWidth="362.0" text="USER ID" />
-   <Label fx:id="tookDate" layoutX="118.0" layoutY="117.0" prefHeight="17.0" prefWidth="362.0" text="TOOK DATE" />
-   <Label fx:id="returnDate" layoutX="118.0" layoutY="146.0" prefHeight="17.0" prefWidth="362.0" text="RETURN DATE" />
-   <Label fx:id="isReturned" layoutX="261.0" layoutY="213.0" prefHeight="17.0" prefWidth="64.0" text="YES OR NO" />
-   <Button layoutX="188.0" layoutY="253.0" mnemonicParsing="false" onAction="#onOrderDelete" prefHeight="34.0" prefWidth="126.0" text="Delete" />
+   <Label fx:id="orderId" layoutX="118.0" layoutY="17.0" prefHeight="17.0" prefWidth="362.0" text="ID">
+      <font>
+         <Font size="16.0" />
+      </font></Label>
+   <Label fx:id="bookId" layoutX="118.0" layoutY="55.0" prefHeight="17.0" prefWidth="362.0" text="BOOK NAME">
+      <font>
+         <Font size="16.0" />
+      </font></Label>
+   <Label fx:id="userId" layoutX="118.0" layoutY="90.0" prefHeight="17.0" prefWidth="362.0" text="USER ID">
+      <font>
+         <Font size="16.0" />
+      </font></Label>
+   <Label fx:id="tookDate" layoutX="118.0" layoutY="117.0" prefHeight="17.0" prefWidth="362.0" text="TOOK DATE">
+      <font>
+         <Font size="16.0" />
+      </font></Label>
+   <Label fx:id="returnDate" layoutX="118.0" layoutY="146.0" prefHeight="17.0" prefWidth="362.0" text="RETURN DATE">
+      <font>
+         <Font size="16.0" />
+      </font></Label>
+   <Label fx:id="isReturned" layoutX="261.0" layoutY="213.0" prefHeight="25.0" prefWidth="94.0" text="YES OR NO">
+      <font>
+         <Font size="16.0" />
+      </font></Label>
+   <Button layoutX="188.0" layoutY="253.0" mnemonicParsing="false" onAction="#onOrderDelete" prefHeight="34.0" prefWidth="126.0" text="Delete">
+      <font>
+         <Font size="16.0" />
+      </font></Button>
 
 </Pane>

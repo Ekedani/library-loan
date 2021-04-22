@@ -2,22 +2,59 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="251.0" prefWidth="499.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.innsmouth.library.controller.users.UserMenuInformController">
     <Separator layoutX="14.0" layoutY="43.0" prefHeight="3.0" prefWidth="474.0" />
     <Separator layoutX="14.0" layoutY="195.0" prefHeight="3.0" prefWidth="474.0" />
 
-    <Label layoutX="14.0" layoutY="14.0" prefHeight="23.0" prefWidth="102.0" text="Name" />
-    <Label layoutX="14.0" layoutY="55.0" prefHeight="17.0" prefWidth="102.0" text="ID" />
-    <Label layoutX="14.0" layoutY="85.0" prefHeight="17.0" prefWidth="102.0" text="Address" />
-    <Label layoutX="14.0" layoutY="116.0" prefHeight="17.0" prefWidth="102.0" text="Email" />
-    <Label layoutX="14.0" layoutY="149.0" prefHeight="17.0" prefWidth="102.0" text="Phone Number" />
+    <Label layoutX="14.0" layoutY="14.0" prefHeight="23.0" prefWidth="102.0" text="Name">
+      <font>
+         <Font size="16.0" />
+      </font></Label>
+    <Label layoutX="14.0" layoutY="55.0" prefHeight="17.0" prefWidth="102.0" text="ID">
+      <font>
+         <Font size="16.0" />
+      </font></Label>
+    <Label layoutX="14.0" layoutY="85.0" prefHeight="17.0" prefWidth="102.0" text="Address">
+      <font>
+         <Font size="16.0" />
+      </font></Label>
+    <Label layoutX="14.0" layoutY="116.0" prefHeight="17.0" prefWidth="102.0" text="Email">
+      <font>
+         <Font size="16.0" />
+      </font></Label>
+    <Label layoutX="14.0" layoutY="149.0" prefHeight="25.0" prefWidth="114.0" text="Phone Number">
+      <font>
+         <Font size="16.0" />
+      </font></Label>
 
-    <Button fx:id="userMenu_editUserBtn" layoutX="406.0" layoutY="210.0" mnemonicParsing="false" onAction="#onEditUser" prefHeight="25.0" prefWidth="79.0" text="Edit" />
-    <Button fx:id="userMenu_backBtn" layoutX="14.0" layoutY="210.0" mnemonicParsing="false" onAction="#onBackPressed" prefHeight="25.0" prefWidth="79.0" text="Back" />
-    <Label fx:id="userMenu_PhoneNumber" layoutX="161.0" layoutY="149.0" prefHeight="17.0" prefWidth="193.0" text="PHONENUMBER" />
-    <Label fx:id="userMenu_Email" layoutX="163.0" layoutY="116.0" prefHeight="17.0" prefWidth="193.0" text="EMAIL" />
-    <Label fx:id="userMenu_Address" layoutX="163.0" layoutY="85.0" prefHeight="17.0" prefWidth="193.0" text="ADDRESS" />
-    <Label fx:id="userMenu_ID" layoutX="163.0" layoutY="55.0" prefHeight="17.0" prefWidth="193.0" text="ID" />
-    <Label fx:id="userMenu_Name" layoutX="162.0" layoutY="17.0" prefHeight="17.0" prefWidth="193.0" text="NAME" />
+    <Button fx:id="userMenu_editUserBtn" layoutX="406.0" layoutY="210.0" mnemonicParsing="false" onAction="#onEditUser" prefHeight="25.0" prefWidth="79.0" text="Edit">
+      <font>
+         <Font size="16.0" />
+      </font></Button>
+    <Button fx:id="userMenu_backBtn" layoutX="14.0" layoutY="210.0" mnemonicParsing="false" onAction="#onBackPressed" prefHeight="25.0" prefWidth="79.0" text="Back">
+      <font>
+         <Font size="16.0" />
+      </font></Button>
+    <Label fx:id="userMenu_PhoneNumber" layoutX="161.0" layoutY="149.0" prefHeight="17.0" prefWidth="193.0" text="PHONENUMBER">
+      <font>
+         <Font size="16.0" />
+      </font></Label>
+    <Label fx:id="userMenu_Email" layoutX="163.0" layoutY="116.0" prefHeight="17.0" prefWidth="193.0" text="EMAIL">
+      <font>
+         <Font size="16.0" />
+      </font></Label>
+    <Label fx:id="userMenu_Address" layoutX="163.0" layoutY="85.0" prefHeight="17.0" prefWidth="193.0" text="ADDRESS">
+      <font>
+         <Font size="16.0" />
+      </font></Label>
+    <Label fx:id="userMenu_ID" layoutX="163.0" layoutY="55.0" prefHeight="17.0" prefWidth="193.0" text="ID">
+      <font>
+         <Font size="16.0" />
+      </font></Label>
+    <Label fx:id="userMenu_Name" layoutX="162.0" layoutY="17.0" prefHeight="17.0" prefWidth="193.0" text="NAME">
+      <font>
+         <Font size="16.0" />
+      </font></Label>
 </Pane>

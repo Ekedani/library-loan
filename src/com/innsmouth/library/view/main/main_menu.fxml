@@ -2,11 +2,21 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.innsmouth.library.controller.main.MainMenuController">
+<Pane prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.innsmouth.library.controller.main.MainMenuController">
 
-    <Button onAction="#onUsersPressed" layoutX="45.0"  layoutY="88.0" prefHeight="25.0" prefWidth="153.0" text="Users" />
-   <Button  onAction="#onBooksPressed" layoutX="219.0" layoutY="88.0" prefHeight="25.0" prefWidth="153.0" text="Books" />
-   <Button  onAction="#onOrdersPressed" layoutX="403.0" layoutY="88.0" prefHeight="25.0" prefWidth="153.0" text="Orders" />
+    <Button layoutX="45.0" layoutY="88.0" onAction="#onUsersPressed" prefHeight="25.0" prefWidth="153.0" text="Users">
+      <font>
+         <Font size="20.0" />
+      </font></Button>
+   <Button layoutX="219.0" layoutY="88.0" onAction="#onBooksPressed" prefHeight="25.0" prefWidth="153.0" text="Books">
+      <font>
+         <Font size="20.0" />
+      </font></Button>
+   <Button layoutX="403.0" layoutY="88.0" onAction="#onOrdersPressed" prefHeight="25.0" prefWidth="153.0" text="Orders">
+      <font>
+         <Font size="20.0" />
+      </font></Button>
 
 </Pane>
