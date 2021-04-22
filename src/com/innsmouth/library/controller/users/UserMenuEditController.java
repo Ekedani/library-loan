@@ -134,7 +134,7 @@ public class UserMenuEditController implements Initializable {
     }
 
     private String getAddressText() {
-        return userMenu_Email.getText();
+        return userMenu_Address.getText();
     }
 
     private int getNumberText() {
