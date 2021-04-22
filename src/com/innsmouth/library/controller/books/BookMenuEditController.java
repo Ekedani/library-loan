@@ -167,12 +167,12 @@ public class BookMenuEditController implements Initializable {
     }
 
     public void goBack() throws Exception {
-        Scene scene = generateEditScene(selectedBookId);
+        Scene scene = generateInformScene(selectedBookId);
         stage.setScene(scene);
         stage.show();
     }
 
-    private Scene generateEditScene(final long selectedId) throws Exception {
+    private Scene generateInformScene(final long selectedId) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/innsmouth/library/view/books/book_menu_inform.fxml"));
         loader.setControllerFactory(t -> createEditBookController(stage, selectedId));
 

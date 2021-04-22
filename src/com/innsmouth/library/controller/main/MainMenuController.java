@@ -1,6 +1,7 @@
 package com.innsmouth.library.controller.main;
 
 import com.innsmouth.library.controller.books.BookCatalogController;
+import com.innsmouth.library.controller.users.UserCatalogController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +23,11 @@ public class MainMenuController {
 
     @FXML
     private void onUsersPressed(ActionEvent actionEvent) {
-
+        try {
+            goToUsersCatalog();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -35,7 +40,8 @@ public class MainMenuController {
     }
 
     @FXML
-    private void onOrdersPressed(ActionEvent actionEvent) { }
+    private void onOrdersPressed(ActionEvent actionEvent) {
+    }
 
 
     public void goToUsersCatalog() throws Exception {
@@ -45,9 +51,9 @@ public class MainMenuController {
     }
 
     private Scene generateUsersCatalogScene() throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(BookCatalogController.LAYOUT));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(UserCatalogController.LAYOUT));
         //todo make it return users' catalog, not books'
-        loader.setControllerFactory(t -> BookCatalogController.createInstance(stage));
+        loader.setControllerFactory(t -> UserCatalogController.createInstance(stage));
 
         return new Scene(loader.load());
     }
